@@ -39,6 +39,7 @@ $list = $connection -> get('lists/list');
 <body>
     <section class="search">
     <?php
+    //リストID・リスト名取得
     $list_Count = sizeof($list);
     for($list_num = 0;$list_num < $list_Count;$list_num++){
         $list_ID[] = $list[$list_num]->{"id"};
@@ -46,6 +47,7 @@ $list = $connection -> get('lists/list');
     }
     $list_lists = array($list_ID,$list_name);
     ?>
+    <!--リスト一覧表示-->
     <form action="main.php" method="get">
     <select name="list_name" onchange="this.form.submit()">
         <option selected>表示するリストを選択してください</option>
@@ -54,7 +56,9 @@ $list = $connection -> get('lists/list');
         <?php } ?>
     </select>
     </form>
+
     <?php
+    //リスト内検索
     if(isset($_GET['list_name'])){
         $search_list = 'list:semiapp/'.$_GET['list_name'];
         $search_tweet = $connection -> get('search/tweets',array('q' => $search_list,'count' => 50,'tweet_mode' => 'extended'));
@@ -93,7 +97,7 @@ $list = $connection -> get('lists/list');
                 }
             }
 
-                //ハッシュタグ処理
+            //ハッシュタグ処理
             $search_tweet->{"statuses"}[$Tweet_num]->{"entities"}->{"hashtags"} = array_reverse($search_tweet->{"statuses"}[$Tweet_num]->{"entities"}->{"hashtags"});
             foreach($search_tweet->{"statuses"}[$Tweet_num]->{"entities"}->{"hashtags"} as $hashtags){
                 if(isset($hashtags)){
@@ -105,11 +109,13 @@ $list = $connection -> get('lists/list');
                     $Text = $left_text . $after_text . $right_text;
                 }
             }
+            //メディアURL取得
             if(isset($search_tweet->{"statuses"}[$Tweet_num]->{"extended_entities"}->{"media"})){
                 foreach($search_tweet->{"statuses"}[$Tweet_num]->{"extended_entities"}->{"media"} as $media){
                     $media_URL[] = $media->media_url_https;
                 }
             }
+            //URLリンク化
             if(isset($search_tweet->{"statuses"}[$Tweet_num]->{"entities"}->{"urls"})){
                 foreach($search_tweet->{"statuses"}[$Tweet_num]->{"entities"}->{"urls"} as $urls){
                     $Text = str_replace($urls->url,'<a href="'.$urls->expanded_url.'" target="_brank">'.$urls->display_url.'</a>',$Text);
@@ -126,7 +132,7 @@ $list = $connection -> get('lists/list');
                     <li id = "User_Name"><?php echo $User_Name ?></li>
                     <li id = "User_ID">@<?php echo $User_ID ?></li>
                 </div>
-                <li><?php if($relative_time < 60){ 
+                <li><?php if($relative_time < 60){          //相対時間表示
                     echo $relative_time . "秒前";
                 }elseif($relative_time >= 60 && $relative_time < (60 * 60)){
                     echo floor($relative_time / 60) . "分前";
@@ -150,7 +156,7 @@ $list = $connection -> get('lists/list');
             </ul>
         <?php
             }
-    }else{
+    }else{          //リスト非選択時表示
         echo '<h2>リストを選択してください</h2>';
     }
     ?>
