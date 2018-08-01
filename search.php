@@ -29,15 +29,40 @@
         $_SESSION['search_word'] = $_GET['search_word'];
     }
 
-    $search_tweet = $connection -> get('search/tweets',array('q' => $_SESSION['search_word'] .' exclude:retweets','count' => 100,'tweet_mode' => 'extended', 'result_type' => $tweet_sort));
     $now_time = time();
+    $max_id = NULL;
+    $params = array(
+        'q' => $_SESSION['search_word'],
+        'exclude' => retweets,
+        'count' => 100,
+        'tweet_mode' => 'extended',
+        'result_type' => $tweet_sort
+    );
 
     if($RT_sort == TRUE){
-        foreach($search_tweet->{"statuses"} as $key => $value){
+        for($i = 0;$i < 2; $i++){
+            print_r($params);
+            ${'search_tweet' . $i} = $connection -> get('search/tweets',$params);
+            //print_r($search_tweet);
+            $max_id = end(${'search_tweet'.$i}->statuses)->id;
+            if(isset($max_id)){
+                echo "<br>=>max_id :" . $max_id . "<br>";
+                $params['max_id'] = $max_id;
+                //$params['since_id'] = $since_id;
+            }
+        }
+        $search_tweet = array_merge_recursive($search_tweet0,$search_tweet1);
+        print_r($search_tweet);
+        /*foreach($search_tweet->{"statuses"} as $key => $value){
             $sort[$key] = $value->retweet_count;
         }
         array_multisort($sort,SORT_DESC,$search_tweet->{"statuses"});
+    */
+    }else{
+        $search_tweet = $connection -> get('search/tweets',$params);
     }
+    $count = sizeof($search_tweet->statuses);
+    echo "<br /><br />" . $count . "件のツイートを取得";
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +102,6 @@
     //*******debug mode*********
     //echo "debug mode<br><br>"; print_r($search_tweet);
     //**************************
-
    ?>
    <h2>並び替え</h2>
    <form action="search.php" method="get">
