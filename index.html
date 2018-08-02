@@ -11,9 +11,24 @@
 
 <body>
     <section class="main">
-        <input type="button" id="button_anime" value="アニメ" onclick="location.href='./anime.php'">
-        <input type="button" id="button_news" value="ニュース" onclick="location.href='./news.php'">
-        <input type="button" id="button_game" value="ゲーム" onclick="location.href='./game.php'">
+        <div class="container">
+            <a href="./news.php">
+                <div class="photo" style="background-image: url(images/news_top.jpg)"></div>
+                <div class="text">ニュース</div>
+            </a>
+        </div>
+        <div class="container">
+            <a href="./anime.php">
+                <div class="photo" style="background-image: url(images/anime_top.png)"></div>
+                <div class="text">アニメ</div>
+            </a>
+        </div>
+        <div class="container">
+            <a href="./game.php">
+                <div class="photo" style="background-image: url(images/game_top.png)"></div>
+                <div class="text">ゲーム</div>
+            </a>
+        </div>
     </section>
 </body>
 
