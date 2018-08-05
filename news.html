@@ -10,13 +10,25 @@
 </head>
 
 <body>
-    <ul>
-        <li>総合</li>
-        <li>国内</li>
-        <li>国外</li>
-        <li>IT</li>
-        <li>ネットニュース</li>
-    </ul>
+    <form action="search.php" method="GET">
+        <ul>
+            <li>
+                <button type="submit" name="search_word" value="list:semiapp/test">総合</button>
+            </li>
+            <li>
+                <button type="submit" name="search_word" value="list:semiapp/#">国内</button>
+            </li>
+            <li>
+                <button type="submit" name="search_word" value="list:semiapp/#">国外</button>
+            </li>
+            <li>
+                <button type="submit" name="search_word" value="list:semiapp/#">IT</button>
+            </li>
+            <li>
+                <button type="submit" name="search_word" value="list:semiapp/#">ネットニュース</button>
+            </li>
+        </ul>
+    </form>
 </body>
 
 </html>

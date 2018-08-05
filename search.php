@@ -50,7 +50,7 @@
                 //echo "<br>------<br>next max_id :" . $max_id . "<br>-------<br>";
                 $params['max_id'] = $max_id;
             }
-            echo "<br>$i : " . sizeof(${'search_tweet' . $i}) . "<br>";
+            //echo "$i : " . sizeof(${'search_tweet' . $i}) . "<br>";
         }
         $search_tweet = array_merge_recursive($search_tweet0,$search_tweet1,$search_tweet2,$search_tweet3,$search_tweet4,$search_tweet5,$search_tweet6,$search_tweet7,$search_tweet8,$search_tweet9);
         
@@ -63,7 +63,6 @@
         $search_tweet = $search_tweets->statuses;
     }
     $count = sizeof($search_tweet);
-    echo "<br /><br />" . $count . "件のツイートを取得";
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +96,14 @@
 </head>
 
 <body>
+    <div class="bread">
+        <ul>
+            <li><a href="index.html">トップページ</a></li>
+            <li><a href="news.html">ニュースジャンル選択</a></li>
+        </ul>
+    </div>
     <section class="search">
+    <p><?php echo $count ?>件のツイートを取得</p>
     <h2>"<?php echo $_SESSION['search_word']; ?>"のTwitter検索結果</h2>
     <?php
     //*******debug mode*********
