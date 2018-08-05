@@ -12,7 +12,8 @@
     $connection = new TwitterOAuth($ConsumerKey,$ConsumerSecret,$AccessToken,$AccessTokenSecret);
 
     $tweet = "";
-    $now_time = time();;
+    $now_time = time();
+    $today = date("Y-m-d");
 
     $RT_sort = FALSE;
     if(isset($_GET['option'])){
@@ -27,6 +28,13 @@
     }else{
         $tweet_sort = "recent";
         $_SESSION['search_word'] = $_GET['search_word'];
+    }
+
+    if(isset($_GET['only_today']) == 1){
+        $_SESSION['search_word'] .= " since:$today";
+        $only_today = TRUE;
+    }else{
+        $only_today = NULL;
     }
 
     $now_time = time();
@@ -110,12 +118,14 @@
     //echo "debug mode<br><br>"; print_r($search_tweet);
     //**************************
    ?>
-   <h2>並び替え</h2>
+   <h3>並び替え</h3>
    <form action="search.php" method="get">
        <input type="radio" name="option" value="recent" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE) echo "checked"; ?>>新しい順</input>
        <input type="radio" name="option" value="popular" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>人気度順</input> 
        <input type="radio" name="option" value="rt" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>RT順</input> 
+       <input type="checkbox" name="only_today" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">今日のツイートに限定する</input>
     </form>
+
     <?php
     $count = sizeof($search_tweet);
     for($Tweet_num = 0; $Tweet_num < $count; $Tweet_num++){
