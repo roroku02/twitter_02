@@ -34,6 +34,7 @@
         $_SESSION['search_word'] .= " since:$today";
         $only_today = TRUE;
     }else{
+        $_SESSION['search_word'] = str_replace( " since:$today", "", $_SESSION['search_word']);
         $only_today = NULL;
     }
 
@@ -41,7 +42,7 @@
     $max_id = NULL;
     $params = array(
         'q' => $_SESSION['search_word'],
-        'exclude' => retweets,
+        'exclude' => 'retweets',
         'count' => 100,
         'tweet_mode' => 'extended',
         'result_type' => $tweet_sort
@@ -75,6 +76,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title><?php echo $_SESSION['search_word']; ?>の検索結果</title>
@@ -92,27 +94,30 @@
     <script type="text/javascript" src="js/lightbox.js"></script>
 </head>
 <script>
-    lightbox.option ({
+    lightbox.option({
         'alwaysShowNavOnTouchDevices': true,
         'fadeDuration': 200,
         'resizeDuration': 400
     })
-    $(document).ready(function(){
-      $(".iframe").colorbox({iframe:true, width:"80%", height:"80%"});
+    $(document).ready(function () {
+        $(".iframe").colorbox({ iframe: true, width: "80%", height: "80%" });
    });
 </script>
-</head>
 
 <body>
     <div class="bread">
         <ul>
-            <li><a href="index.html">トップページ</a></li>
-            <li><a href="news.html">ニュースジャンル選択</a></li>
+            <li>
+                <a href="index.html">トップページ</a>
+            </li>
+            <li>
+                <a href="news.html">ニュースジャンル選択</a>
+            </li>
         </ul>
     </div>
     <section class="search">
-    <p><?php echo $count ?>件のツイートを取得</p>
-    <h2>"<?php echo $_SESSION['search_word']; ?>"のTwitter検索結果</h2>
+        <p><?php echo $count ?>件のツイートを取得</p>
+        <h2>"<?php echo $_SESSION['search_word']; ?>"のTwitter検索結果</h2>
     <?php
     //*******debug mode*********
     //echo "debug mode<br><br>"; print_r($search_tweet);
@@ -189,33 +194,50 @@
             <ul>
             <?php if($Retweet_TRUE == TRUE){ ?>
                 <p class="retweet_sentence"><i class="fas fa-retweet fa-fw"></i><?php echo $RT_User; ?>がリツイート</p>
-                <?php } ?>
-            <div id = "Tweet_header">
-                <div id = "User_info">
-                    <li><img src =<?php echo $Profile_image_URL; ?>></li>
-                    <li id = "User_Name"><?php echo $User_Name ?></li>
-                    <li id = "User_ID">@<?php echo $User_ID ?></li>
+            <?php } ?>
+            <div id="Tweet_header">
+                <div id="User_info">
+                    <li>
+                        <img src=<?php echo $Profile_image_URL; ?>></li>
+                    <li id="User_Name">
+                        <?php echo $User_Name ?>
+                    </li>
+                    <li id="User_ID">@
+                        <?php echo $User_ID ?>
+                    </li>
                 </div>
-                <li><?php if($relative_time < 60){ 
+                <li>
+                    <?php if($relative_time < 60){ 
                     echo $relative_time . "秒前";
-                }elseif($relative_time >= 60 && $relative_time < (60 * 60)){
-                    echo floor($relative_time / 60) . "分前";
-                }elseif($relative_time >= (60 * 60) && $relative_time < (60 * 60 * 24)){
+                    }elseif($relative_time >= 60 && $relative_time < (60 * 60)){
+                        echo floor($relative_time / 60) . "分前";
+                    }elseif($relative_time >= (60 * 60) && $relative_time < (60 * 60 * 24)){
                     echo floor($relative_time / (60 * 60)) . "時間前";
-                }elseif($relative_time >= (60 * 60 * 24)){
-                    echo date("Y/n/j G:i",$Tweet_time);
-                }?>
+                    }elseif($relative_time >= (60 * 60 * 24)){
+                        echo date("Y/n/j G:i",$Tweet_time);
+                    }?>
                 </li>
             </div>
-            <li><?php echo nl2br($Text); ?></li>
+            <li>
+                <?php echo nl2br($Text); ?>
+            </li>
             <?php if(isset($media_URL)){ 
                 $media_Count = sizeof($media_URL);?>
-                <li><?php for($media_num = 0;$media_num < $media_Count;$media_num++) { ?>
-                    <a href="<?php echo $media_URL[$media_num]; ?>" class="img" data-lightbox="group<?php echo $Tweet_num; ?>" style="background-image: url(<?php echo $media_URL[$media_num] .':small'; ?>);"></a><?php } ?></li>
+                <li>
+                    <?php for($media_num = 0;$media_num < $media_Count;$media_num++) { ?>
+                    <a href="<?php echo $media_URL[$media_num]; ?>" class="img" data-lightbox="group<?php echo $Tweet_num; ?>" style="background-image: url(<?php echo $media_URL[$media_num] .':small'; ?>);"></a>
                     <?php } ?>
-            <div id = "RT_Counter">
-                <li><i class="fas fa-retweet fa-fw" style="color: green;"></i><?php echo $Retweet_Count; ?></li>
-                <li><i class="fas fa-heart" style="color: red;"></i> <?php echo $Favorite_Count; ?></li>
+                </li>
+                    <?php } ?>
+                <div id="RT_Counter">
+                    <li>
+                        <i class="fas fa-retweet fa-fw" style="color: green;"></i>
+                        <?php echo $Retweet_Count; ?>
+                    </li>
+                    <li>
+                        <i class="fas fa-heart" style="color: red;"></i>
+                        <?php echo $Favorite_Count; ?>
+                    </li>
             </div>
         </ul>
     <?php
@@ -223,4 +245,5 @@
     ?>
     </section>
 </body>
+
 </html>
