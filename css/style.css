@@ -28,6 +28,10 @@
 }
 
 
+#loading {
+    display: none;
+}
+
 .main {
     display: flex;
     flex-wrap: wrap;
