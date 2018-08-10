@@ -1,5 +1,4 @@
 <?php
-    echo ob_get_level();
     session_start();
     require_once('./twitteroauth/autoload.php');
 
@@ -49,15 +48,16 @@
         'result_type' => $tweet_sort
     );
 
-    mb_http_output('pass');
     ob_implicit_flush(true);
     while(@ob_end_clean()); 
-
-    echo "<div id = 'loading' style='position:absolute;top:50%;left:50%;'>";
-
+    
     if($RT_sort == TRUE){
+        echo "<div id = 'loading' style='position:absolute;top:50%;left:50%;'>";
+        echo "<img src= './images/loading.gif'>";
+        echo "<div id = 'percent'>";
         for($i = 0;$i < 10; $i++){
-            echo $i * 10 . "%完了<br/>";        
+            echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
+            echo ($i + 1) * 10 . "%完了<br/>";        
             //print_r($params);
             ${'search_tweets' . $i} = $connection -> get('search/tweets',$params);
             unset(${'search_tweets' . $i} -> search_metadata);
@@ -71,6 +71,7 @@
         }
         echo "</div>";
         $search_tweet = array_merge_recursive($search_tweet0,$search_tweet1,$search_tweet2,$search_tweet3,$search_tweet4,$search_tweet5,$search_tweet6,$search_tweet7,$search_tweet8,$search_tweet9);
+        echo "</div>";
         
         foreach($search_tweet as $key => $value){
             $sort[$key] = $value->retweet_count;
