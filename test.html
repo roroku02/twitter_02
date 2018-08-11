@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<style>
+    #button1 {
+        display: block;
+        font-size: 100px;
+    }
+
+    #button2 {
+        display: none;
+        font-size: 100px;
+    }
+
+    button {
+        font-size: 100px;
+        background-color: blue;
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+    }
+</style>
+<script>
+    function test() {
+        document.getElementById("button1").style.display = "none";
+        document.getElementById("button2").style.display = "block";
+    }
+    function test2() {
+        document.getElementById("button2").style.display = "none";
+        document.getElementById("button1").style.display = "block";
+    }
+</script>
+
+<body>
+    <div id="button1">
+        <button onclick="test()">test1</button>
+    </div>
+    <div id="button2">
+        <button onclick="test2()">test2</button>
+    </div>
+</body>
+
+</html>
