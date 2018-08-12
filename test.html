@@ -29,9 +29,15 @@
     }
 </style>
 <script>
-    function test() {
-        document.getElementById("button1").style.display = "none";
-        document.getElementById("button2").style.display = "block";
+    function test(name) {
+        var element = document.getElementById(name);
+        //document.write("test");
+        //this.style.color = "red";
+        //std.nextSibling.style.display = "block";
+        name.style.display = "none";
+        name.nextElementSibling.style.display = "block";
+        //element.nextElementSibling.style.display = "block";
+        console.log(name.nextElementSibling);
     }
     function test2() {
         document.getElementById("button2").style.display = "none";
@@ -40,12 +46,14 @@
 </script>
 
 <body>
-    <div id="button1">
-        <button onclick="test()">test1</button>
-    </div>
-    <div id="button2">
-        <button onclick="test2()">test2</button>
-    </div>
+    <form action="test.php">
+        <div id="button1">
+            <button type="button" onclick="test(button1)">test1</button>
+        </div>
+        <div id="button2">
+            <button type="button" onclick="test2()">test2</button>
+        </div>
+    </form>
 </body>
 
 </html>
