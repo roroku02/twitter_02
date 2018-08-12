@@ -11,10 +11,10 @@
 <script>
     function change_question(class_name) {
         class_name.style.display = "none";
-        class_name.nextElementSibling.style.display = "block";
-        if (class_name.nextElementSibling = null) {
-            console.log(class_name.parentNode.firstChild);
-            class_name.parentNode.firstChild.style.display = "block";
+        if(class_name.nextElementSibling){
+            class_name.nextElementSibling.style.display = "block";
+        }else{
+            class_name.parentNode.children[0].style.display = "block";
         }
     }
 </script>
