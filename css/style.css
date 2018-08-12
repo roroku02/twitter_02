@@ -35,18 +35,19 @@
 .main {
     display: flex;
     flex-wrap: wrap;
+    max-width: 1000px;
 }
 
 .main .container {
     margin: 50px;
-    flex: 1;
+    flex: 1 1 200px;
     border: 1px solid black;
 }
 
 .container .photo {
-    min-height: 200px;
-    background-position: center;
-    background-size: cover;
+    display: block;
+    margin: 0 auto;
+    height: 200px;
 }
 
 .main #index_button {
