@@ -201,11 +201,25 @@
             if(isset($search_tweet[$Tweet_num]->{"entities"}->{"urls"})){
                 foreach($search_tweet[$Tweet_num]->{"entities"}->{"urls"} as $urls){
                     $Text = str_replace($urls->url,'<a href="'.$urls->expanded_url.'" class= "iframe">'.$urls->display_url.'</a>',$Text);
+                    //YouTubeリンク取得・サムネイル取得
                     if(strpos($urls->expanded_url,'youtu.be') !== false){
                         $y_url = $urls->expanded_url;
                         $y_path = parse_url($y_url,PHP_URL_PATH);
                         $y_thumb = "http://i.ytimg.com/vi$y_path/mqdefault.jpg";
                         $y_url = "http://www.youtube.com/embed$y_path";
+                    }
+                    //ニコニコ動画リンク取得・サムネイル取得
+                    if(strpos($urls->expanded_url,'nico.ms') !== false){
+                        $n_url = $urls->expanded_url;
+                        $n_path = parse_url($n_url,PHP_URL_PATH);
+                        $n_del = array('/sm','/so','/nm');
+                        $n_id = str_replace($n_del,'',$n_path);
+                        if(file_get_contents("http://tn.smilevideo.jp/smile?i=$n_id.M",NULL,NULL,0,1) !== false){
+                            $n_thumb = "http://tn.smilevideo.jp/smile?i=$n_id.M";
+                        }else{
+                            $n_thumb = "http://tn.smilevideo.jp/smile?i=$n_id";
+                        }
+                        $n_url = "https://embed.nicovideo.jp/watch$n_path";
                     }
                 }
             }
@@ -255,7 +269,15 @@
                     </li>';
                 $y_url = NULL;
                 $y_thumb = NULL;
-            }?>
+            }
+            if(isset($n_thumb)){
+                echo '<li id = "nico_link">
+                    <a href='."$n_url".' class = "iframe" style="background-image:url('."$n_thumb".');"><i class="far fa-play-circle"></i></a>
+                    </li>';
+                $n_url = NULL;
+                $n_thumb = NULL;
+            }
+            ?>
                 <div id="RT_Counter">
                     <li>
                         <i class="fas fa-retweet fa-fw" style="color: green;"></i>
