@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ニュース</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<script>
+    function change_question(class_name) {
+        class_name.style.display = "none";
+        if (class_name.nextElementSibling) {
+            class_name.nextElementSibling.style.display = "block";
+        } else {
+            class_name.parentNode.children[0].style.display = "block";
+        }
+    }
+</script>
+
+<body>
+    <form action="search.php" method="GET">
+        <div id="sougou" style="display: block;">
+            <p>スポーツの総合情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/sports">はい</button>
+            <button type="button" onclick="change_question(sougou)">いいえ</button>
+        </div>
+        <div id="baseball" style="display: none;">
+            <p>野球の情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/baseball">はい</button>
+            <button type="button" onclick="change_question(baseball)">いいえ</button>
+        </div>
+        <div id="soccer" style="display: none;">
+            <p>サッカーの情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/soccer">はい</button>
+            <button type="button" onclick="change_question(soccer)">いいえ</button>
+        </div>
+        <!--
+        <div id="it" style="display: none;">
+            <p>ITのニュースを表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/#">IT</button>
+            <button type="button" onclick="change_question(it)">いいえ</button>
+        </div>
+        <div id="netnews" style="display: none;">
+            <p>ネットニュースを表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/#">ネットニュース</button>
+            <button type="button" onclick="change_question(netnews)">いいえ</button>
+        </div>
+    -->
+    </form>
+</body>
+
+</html>
