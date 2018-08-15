@@ -185,18 +185,28 @@
                     $hashtag_indices = $hashtags->indices;
                     $left_text = mb_substr($Text,0,$hashtag_indices[0]);
                     $right_text = mb_substr($Text,($hashtag_indices[0] + ($hashtag_indices[1] - $hashtag_indices[0])));
-                    $after_text = '<a href="http://localhost/twitter_01/search.php?search_word=' . rawurlencode("#" . $hashtag_text) . '">#' . $hashtag_text . '</a>';
+                    $after_text = '<a href="http://localhost/twitter_02/search.php?search_word=' . rawurlencode("#" . $hashtag_text) . '" class = "iframe">#' . $hashtag_text . '</a>';
                     $Text = $left_text . $after_text . $right_text;
                 }
             }
+
+            //メディア処理
             if(isset($search_tweet[$Tweet_num]->{"extended_entities"}->{"media"})){
                 foreach($search_tweet[$Tweet_num]->{"extended_entities"}->{"media"} as $media){
                     $media_URL[] = $media->media_url_https;
                 }
             }
+
+            //URL処理
             if(isset($search_tweet[$Tweet_num]->{"entities"}->{"urls"})){
                 foreach($search_tweet[$Tweet_num]->{"entities"}->{"urls"} as $urls){
                     $Text = str_replace($urls->url,'<a href="'.$urls->expanded_url.'" class= "iframe">'.$urls->display_url.'</a>',$Text);
+                    if(strpos($urls->expanded_url,'youtu.be') !== false){
+                        $y_url = $urls->expanded_url;
+                        $y_path = parse_url($y_url,PHP_URL_PATH);
+                        $y_thumb = "http://i.ytimg.com/vi$y_path/mqdefault.jpg";
+                        $y_url = "http://www.youtube.com/embed$y_path";
+                    }
                 }
             }
             
@@ -239,6 +249,13 @@
                     <?php } ?>
                 </li>
                     <?php } ?>
+            <?php if(isset($y_thumb)){
+                echo '<li id="youtube_link">
+                    <a href='."$y_url".' class="iframe" style="background-image:url('."$y_thumb".');"><i class="fab fa-youtube"></i></a>
+                    </li>';
+                $y_url = NULL;
+                $y_thumb = NULL;
+            }?>
                 <div id="RT_Counter">
                     <li>
                         <i class="fas fa-retweet fa-fw" style="color: green;"></i>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ゲーム</title>
+    <title>運行情報</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
@@ -21,27 +21,27 @@
 
 <body>
     <form action="search.php" method="GET">
-        <div id="sougou" style="display: block;">
-            <p>ゲームの総合情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/game">はい</button>
-            <button type="button" onclick="change_question(sougou)">いいえ</button>
+        <div id="jr" style="display: block;">
+            <p>JR（在来線）の情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/JR">はい</button>
+            <button type="button" onclick="change_question(jr)">いいえ</button>
         </div>
-        <div id="nintendo" style="display: none;">
-            <p>任天堂のゲーム情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/nintendo">はい</button>
-            <button type="button" onclick="change_question(nintendo)">いいえ</button>
+        <div id="hankyu" style="display: none;">
+            <p>阪急線の情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/hankyu 運転状況">はい</button>
+            <button type="button" onclick="change_question(hankyu)">いいえ</button>
         </div>
-        <div id="PS" style="display: none;">
-            <p>Playstationのゲーム情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/PS">はい</button>
-            <button type="button" onclick="change_question(PS)">いいえ</button>
+        <div id="shinkansen" style="display: none;">
+            <p>新幹線の情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/shinkansen">はい</button>
+            <button type="button" onclick="change_question(shinkansen)">いいえ</button>
         </div>
+        <!--
         <div id="smart" style="display: none;">
             <p>スマートフォンゲームの情報を表示しますか？</p>
             <button type="submit" name="search_word" value="list:semiapp/smartgame">はい</button>
             <button type="button" onclick="change_question(smart)">いいえ</button>
         </div>
-        <!--
         <div id="netnews" style="display: none;">
             <p>ネットニュースを表示しますか？</p>
             <button type="submit" name="search_word" value="list:semiapp/#">ネットニュース</button>

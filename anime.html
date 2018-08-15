@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>スポーツ</title>
+    <title>アニメ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
@@ -22,19 +22,14 @@
 <body>
     <form action="search.php" method="GET">
         <div id="sougou" style="display: block;">
-            <p>スポーツの総合情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/sports">はい</button>
+            <p>アニメの総合情報を表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/anime">はい</button>
             <button type="button" onclick="change_question(sougou)">いいえ</button>
         </div>
-        <div id="baseball" style="display: none;">
-            <p>野球の情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/baseball">はい</button>
-            <button type="button" onclick="change_question(baseball)">いいえ</button>
-        </div>
-        <div id="soccer" style="display: none;">
-            <p>サッカーの情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/soccer">はい</button>
-            <button type="button" onclick="change_question(soccer)">いいえ</button>
+        <div id="anime_tag" style="display: none;">
+            <p>各アニメの情報を表示しますか？</p>
+            <button type="button" onclick="window.location.href='anime.php'">はい</button>
+            <button type="button" onclick="change_question(anime_tag)">いいえ</button>
         </div>
         <!--
         <div id="it" style="display: none;">
