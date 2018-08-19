@@ -152,3 +152,12 @@
     background-size: cover;
     background-position: center;
 }
+
+.no-result {
+    position: absolute;
+    z-index: -1;
+}
+
+.tweet_list > div {
+    background-color: white;
+}

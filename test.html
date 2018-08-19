@@ -3,57 +3,32 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>test</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="http://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/colorbox.css">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/lightbox.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox-ja.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/lightbox.css" />
+    <script type="text/javascript" src="js/lightbox.js"></script>
+    <script src="js/main.js"></script>
+
 </head>
-<style>
-    #button1 {
-        display: block;
-        font-size: 100px;
-    }
 
-    #button2 {
-        display: none;
-        font-size: 100px;
-    }
 
-    button {
-        font-size: 100px;
-        background-color: blue;
-        border-radius: 50%;
-        height: 150px;
-        width: 150px;
-    }
-</style>
-<script>
-    function test(name) {
-        var element = document.getElementById(name);
-        //document.write("test");
-        //this.style.color = "red";
-        //std.nextSibling.style.display = "block";
-        name.style.display = "none";
-        name.nextElementSibling.style.display = "block";
-        //element.nextElementSibling.style.display = "block";
-        console.log(name.nextElementSibling);
-    }
-    function test2() {
-        document.getElementById("button2").style.display = "none";
-        document.getElementById("button1").style.display = "block";
-    }
-</script>
 
 <body>
-    <form action="test.php">
-        <div id="button1">
-            <button type="button" onclick="test(button1)">test1</button>
-        </div>
-        <div id="button2">
-            <button type="button" onclick="test2()">test2</button>
-        </div>
-    </form>
+    <button id="button">button</button>
 </body>
+<script>
+    $("#button").on("click", function () { alert("OK"); })
+</script>
 
 </html>
