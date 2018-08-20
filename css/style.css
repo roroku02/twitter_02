@@ -154,7 +154,7 @@
     background-position: center;
 }
 
-.search ul {
+.search > ul {
     display: flex;
 }
 

@@ -246,7 +246,7 @@
                 echo '<div class = "shinkansen">';
             }
                 ?>
-                <ul>
+        <ul>
             <div id="Tweet_header">
                 <div id="User_info">
                     <li>
@@ -307,7 +307,7 @@
                     </li>
             </div>
         </ul>
-            </div>
+    </div>
     <?php
         }
     ?>

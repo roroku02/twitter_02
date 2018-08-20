@@ -143,7 +143,7 @@
 
     <?php
     $count = sizeof($search_tweet);
-    for($Tweet_num = 0; $Tweet_num < $count; $Tweet_num++){
+    for($Tweet_num = 0; $Tweet_num < 100; $Tweet_num++){
         $TweetID = $search_tweet[$Tweet_num]->{"id"};
         $Date = $search_tweet[$Tweet_num]->{"created_at"};
         $Tweet_time = strtotime($Date);
@@ -243,7 +243,7 @@
                 }
                 echo '</div>';
             }
-            echo '<div class="tweet">';?>
+            echo '<div class="tweet">'; ?>
             <div id="Tweet_header">
                 <div id="User_info">
                     <li>
