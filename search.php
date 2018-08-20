@@ -102,6 +102,8 @@
     <script type="text/javascript" src="js/jquery.colorbox-ja.js"></script>
     <link rel="stylesheet" type="text/css" href="css/lightbox.css" />
     <script type="text/javascript" src="js/lightbox.js"></script>
+    <link rel="stylesheet" href="css/slick.css">
+    <script src="js/slick.js"></script>
 </head>
 <script>
     lightbox.option({
@@ -141,6 +143,7 @@
        <input type="checkbox" name="only_today" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">今日のツイートに限定する</input>
     </form>
 
+   <div class="js-slider">
     <?php
     $count = sizeof($search_tweet);
     for($Tweet_num = 0; $Tweet_num < 100; $Tweet_num++){
@@ -225,7 +228,7 @@
             }
             
         ?>
-            <ul>
+            <ul class="slider-item">
             <?php if($Retweet_TRUE == TRUE){ ?>
                 <p class="retweet_sentence"><i class="fas fa-retweet fa-fw"></i><?php echo $RT_User; ?>がリツイート</p>
             <?php } ?>
@@ -308,7 +311,11 @@
     <?php
         }
     ?>
+    
+    </div>
+
     </section>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

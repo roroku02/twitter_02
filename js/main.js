@@ -1,3 +1,6 @@
+$('.js-slider').slick({
+});
+
 
 $("#biwako_kyoto_kobe").on("click", function () {
     $('.tweet_list > div').css("display", "none");
