@@ -153,6 +153,25 @@
     background-position: center;
 }
 
+.search ul {
+    display: flex;
+}
+
+.search .rank {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.rank img {
+    width: 70px;
+}
+
+.search .tweet {
+    flex: 9;
+}
 .no-result {
     position: absolute;
     z-index: -1;

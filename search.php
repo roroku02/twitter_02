@@ -229,6 +229,21 @@
             <?php if($Retweet_TRUE == TRUE){ ?>
                 <p class="retweet_sentence"><i class="fas fa-retweet fa-fw"></i><?php echo $RT_User; ?>がリツイート</p>
             <?php } ?>
+            <?php
+            if($RT_sort == TRUE){
+                echo '<div class="rank">';
+                if($Tweet_num == 0){
+                    echo '<img src="images/rank_1.png">';
+                }elseif($Tweet_num == 1){
+                    echo '<img src="images/rank_2.png">';
+                }elseif($Tweet_num == 2){
+                    echo '<img src="images/rank_3.png">';
+                }else {
+                    echo $Tweet_num + 1;
+                }
+                echo '</div>';
+            }
+            echo '<div class="tweet">';?>
             <div id="Tweet_header">
                 <div id="User_info">
                     <li>
@@ -288,6 +303,7 @@
                         <?php echo $Favorite_Count; ?>
                     </li>
             </div>
+        <?php if($RT_sort == TRUE) echo '</div>'; ?>
         </ul>
     <?php
         }
