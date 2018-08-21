@@ -80,6 +80,15 @@
     }
     .slick-slide > div {
         border-bottom: solid 1px gray;
+        margin: 0;
+    }
+
+    .search #User_ID {
+        display: none;
+    }
+
+    .search #Tweet_main {
+        font-size: 1.45em;
     }
 }
 
@@ -104,7 +113,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 10px;
     padding-right: 10px;
 }
 
@@ -188,7 +196,8 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    margin-right: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .rank img {

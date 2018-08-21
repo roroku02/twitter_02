@@ -1,6 +1,7 @@
 var windowWidth = $(window).width();
 if(windowWidth <= 768){
     $('.js-slider').slick({
+        infinite: false
     });
 }
 
