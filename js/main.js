@@ -1,6 +1,8 @@
-$('.js-slider').slick({
-});
-
+var windowWidth = $(window).width();
+if(windowWidth <= 768){
+    $('.js-slider').slick({
+    });
+}
 
 $("#biwako_kyoto_kobe").on("click", function () {
     $('.tweet_list > div').css("display", "none");

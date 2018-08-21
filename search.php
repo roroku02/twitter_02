@@ -217,7 +217,7 @@
                         $n_path = parse_url($n_url,PHP_URL_PATH);
                         $n_del = array('/sm','/so','/nm');
                         $n_id = str_replace($n_del,'',$n_path);
-                        if(file_get_contents("http://tn.smilevideo.jp/smile?i=$n_id.M",NULL,NULL,0,1) !== false){
+                        if(@file_get_contents("http://tn.smilevideo.jp/smile?i=$n_id.M",NULL,NULL,0,1) !== false){
                             $n_thumb = "http://tn.smilevideo.jp/smile?i=$n_id.M";
                         }else{
                             $n_thumb = "http://tn.smilevideo.jp/smile?i=$n_id";
@@ -270,12 +270,12 @@
                     }?>
                 </li>
             </div>
-            <li>
+            <li id="Tweet_main">
                 <?php echo nl2br($Text); ?>
             </li>
             <?php if(isset($media_URL)){ 
                 $media_Count = sizeof($media_URL);?>
-                <li>
+                <li id="Tweet_media">
                     <?php for($media_num = 0;$media_num < $media_Count;$media_num++) { ?>
                     <a href="<?php echo $media_URL[$media_num]; ?>" class="img" data-lightbox="group<?php echo $Tweet_num; ?>" style="background-image: url(<?php echo $media_URL[$media_num] .':small'; ?>);"></a>
                     <?php } ?>

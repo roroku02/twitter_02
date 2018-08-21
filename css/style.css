@@ -70,9 +70,17 @@
 
 .search ul{
     border-bottom: 1px solid rgb(165, 165, 165);
-    width: auto;
     padding: 10px;
     list-style-type: none;
+}
+
+@media(max-width: 768px){
+    .search ul {
+        border-bottom: none;
+    }
+    .slick-slide > div {
+        border-bottom: solid 1px gray;
+    }
 }
 
 .search .retweet_sentence{
@@ -96,6 +104,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .search #User_info #User_Name{
@@ -105,12 +115,24 @@
     padding-left: 5px;
 }
 
+.search #Tweet_main {
+    padding: 10px;
+}
+
+.search #Tweet_media {
+    padding-left: 10px;
+}
+
 .search #youtube_link a, #nico_link a{
     display: block;
     width: 320px;
     height: 180px;
     background-position: center;
     background-size: cover;
+}
+
+.search #youtube_link,.search #nico_link {
+    padding:10px;
 }
 
 .search #youtube_link i{
@@ -128,7 +150,7 @@
     bottom: 0;
     right: 0;
     font-size: 72px;
-    color: white;
+    color: #55acee;
     background-repeat: no-repeat;
     opacity: 0.9;
 }
@@ -140,6 +162,7 @@
 .search #RT_Counter {
     display: flex;
     margin-top: 10px;
+    padding-left: 10px;
 }
 
 .search #RT_Counter .fa-heart{
@@ -172,6 +195,9 @@
     width: 70px;
 }
 
+.search .js-slider {
+    margin: 10px;
+}
 .search .tweet {
     flex: 9;
 }
