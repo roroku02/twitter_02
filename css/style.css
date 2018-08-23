@@ -74,12 +74,25 @@
     list-style-type: none;
 }
 
+#arrows {
+    display: none;
+}
+
 @media(max-width: 768px){
+    .search form {
+        margin-bottom: 30px;
+    }
     .search ul {
         border-bottom: none;
     }
+
+    .js-slider {
+        padding-right: 5px;
+        box-shadow: 0 0 50px gray;
+        border-radius: 8px;
+    }
+
     .slick-slide > div {
-        border-bottom: solid 1px gray;
         margin: 0;
     }
 
@@ -89,6 +102,21 @@
 
     .search #Tweet_main {
         font-size: 1.45em;
+    }
+
+    #arrows {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 15%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: beige;
+        border-radius: 8px;
+        padding: 10px;
+        opacity: .9;
     }
 }
 
@@ -124,7 +152,7 @@
 }
 
 .search #Tweet_main {
-    padding: 10px;
+    padding-right: 15px;
 }
 
 .search #Tweet_media {
@@ -140,7 +168,7 @@
 }
 
 .search #youtube_link,.search #nico_link {
-    padding:10px;
+    padding-right:10px;
 }
 
 .search #youtube_link i{
@@ -196,8 +224,8 @@
     flex: 1;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .rank img {
@@ -218,3 +246,13 @@
 .tweet_list > div {
     background-color: white;
 }
+
+.slick-arrow{
+    font-size: 3em;
+}
+
+#arrows img {
+    size: 14px;
+    padding: 3px;
+}
+

@@ -102,8 +102,8 @@
     <script type="text/javascript" src="js/jquery.colorbox-ja.js"></script>
     <link rel="stylesheet" type="text/css" href="css/lightbox.css" />
     <script type="text/javascript" src="js/lightbox.js"></script>
-    <link rel="stylesheet" href="css/slick.css">
     <script src="js/slick.js"></script>
+    <link rel="stylesheet" href="css/slick.css">
 </head>
 <script>
     lightbox.option({
@@ -311,8 +311,8 @@
     <?php
         }
     ?>
-    
     </div>
+    <div id="arrows"><img src="images/swipe.png">スワイプして次のツイートを表示します</div>
 
     </section>
     <script src="js/main.js"></script>

@@ -1,10 +1,19 @@
 var windowWidth = $(window).width();
-if(windowWidth <= 768){
+if (windowWidth <= 768) {
     $('.js-slider').slick({
-        infinite: false
+        infinite: false,
+        prevArrow: '<i class="far fa-arrow-alt-circle-left"></i>',
+        nextArrow: '<i class="far fa-arrow-alt-circle-right slick_next"></i>',
+        mobileFirst: true,
+        adaptiveHeight: false,
+        appendArrows: '.arrows',
     });
-}
 
+    setTimeout(function () {
+        $('#arrows').fadeOut("slow");
+    }, 5000);
+
+}
 $("#biwako_kyoto_kobe").on("click", function () {
     $('.tweet_list > div').css("display", "none");
     $('.tweet_list > .biwako_kyoto_kobe').css("display", "block");
