@@ -128,14 +128,14 @@
     //**************************
    ?>
     <?php if(strpos($_SESSION['search_word'],'JR') !== false){ ?>
-        <a href="#" id="biwako_kyoto_kobe">琵琶湖線・京都線・神戸線</a>
-        <a href="#" id="kosei">湖西線</a>
-        <a href="#" id="kusatsu">草津線</a>
-        <a href="#" id="kanjo">環状線</a>
-        <a href="#" id="takaraduka_tozai">宝塚線・東西線・学研都市線</a>
-        <a href="#" id="kansai">関西線</a>
-        <a href="#" id="nara">奈良線</a>
-        <a href="#" id="expless">特急列車</a>
+        <input type="radio" name="rosen" value="0" id="biwako_kyoto_kobe">琵琶湖線・京都線・神戸線</a>
+        <input type="radio" name="rosen" value="1" id="kosei">湖西線</a>
+        <input type="radio" name="rosen" value="2" id="kusatsu">草津線</a>
+        <input type="radio" name="rosen" value="3" id="kanjo">環状線</a>
+        <input type="radio" name="rosen" value="4" id="takaraduka_tozai">宝塚線・東西線・学研都市線</a>
+        <input type="radio" name="rosen" value="5" id="kansai">関西線</a>
+        <input type="radio" name="rosen" value="6" id="nara">奈良線</a>
+        <input type="radio" name="rosen" value="7" id="expless">特急列車</a>
     <?php } ?>
         <div class="no-result">
             <p>選択した路線に15分以上の遅れは発生していません。</p>
@@ -258,7 +258,7 @@
                         <?php echo $User_ID ?>
                     </li>
                 </div>
-                <li>
+                <li id="time_stamp">
                     <?php if($relative_time < 60){ 
                     echo $relative_time . "秒前";
                     }elseif($relative_time >= 60 && $relative_time < (60 * 60)){
