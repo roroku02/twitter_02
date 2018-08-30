@@ -36,6 +36,7 @@ if (windowWidth <= 768) {
         mobileFirst: true,
         adaptiveHeight: false,
         appendArrows: '.arrows',
+        arrows: false,
     });
 
     setTimeout(function () {

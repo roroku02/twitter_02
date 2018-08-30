@@ -20,33 +20,45 @@
 </script>
 
 <body>
-    <form action="search.php" method="GET">
+    <div class="container_q">
+    <div class="chara">
+        <img src="./images/chibi.png" alt="chibi">
+    </div>
+    <div class="arrow_box">
+        <form action="search.php" method="GET">
         <div id="sougou" style="display: block;">
             <p>総合ニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/total">総合</button>
+            <button type="submit" name="search_word" value="list:semiapp/total">はい</button>
             <button type="button" onclick="change_question(sougou)">いいえ</button>
         </div>
         <div id="kokunai" style="display: none;">
             <p>国内のニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/#">国内</button>
+            <button type="submit" name="search_word" value="list:semiapp/kokunai">はい</button>
             <button type="button" onclick="change_question(kokunai)">いいえ</button>
         </div>
         <div id="kokugai" style="display: none;">
             <p>国外のニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/#">国外</button>
+            <button type="submit" name="search_word" value="list:semiapp/WorldNews">はい</button>
             <button type="button" onclick="change_question(kokugai)">いいえ</button>
+        </div>
+        <div id="entame" style="display: none;">
+            <p>エンタメニュースを表示しますか？</p>
+            <button type="submit" name="search_word" value="list:semiapp/entame">はい</button>
+            <button type="button" onclick="change_question(entame)">いいえ</button>
         </div>
         <div id="it" style="display: none;">
             <p>ITのニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/#">IT</button>
+            <button type="submit" name="search_word" value="list:semiapp/IT">はい</button>
             <button type="button" onclick="change_question(it)">いいえ</button>
         </div>
         <div id="netnews" style="display: none;">
             <p>ネットニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/#">ネットニュース</button>
+            <button type="submit" name="search_word" value="list:semiapp/NetNews">はい</button>
             <button type="button" onclick="change_question(netnews)">いいえ</button>
         </div>
     </form>
+    </div>
+    </div>
 </body>
 
 </html>
