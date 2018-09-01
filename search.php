@@ -82,6 +82,35 @@
         $search_tweet = $search_tweets->statuses;
     }
     $count = sizeof($search_tweet);
+    $search_tag = array(
+        'total' => "ニュース（総合）",
+        'kokunai' => "国内ニュース",
+        'NetNews' => "ネットニュース",
+        'WorldNews' => "国外ニュース",
+        'IT' => "ITニュース",
+        'NetNews' => "ネットニュース",
+        'soccer' => "サッカー",
+        'baseball' => "野球",
+        'sports' => "スポーツ（総合）",
+        'youtube' => "YouTube",
+        'niconico' => "ニコニコ動画",
+        '#nicovideo' => "みんなが共有した動画（ニコニコ）",
+        "@YouTubeさん" => "みんなが共有した動画（YouTube）",
+        'nintendo' => "任天堂",
+        'PS' => "PlayStation",
+        'smartgame' => "スマホゲーム",
+        'game' => "ゲーム（総合）",
+        'JPOP' => "JPOP",
+        'WorldMusic' => "国外音楽",
+        'KPOP' => "KPOP",
+        'anime' => "アニメ（総合）",
+    );
+    foreach($search_tag as $key => $value){
+        if(strpos($_SESSION['search_word'],$key) !== false){
+            $search_word = $value;
+            break;
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +118,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo $_SESSION['search_word']; ?>の検索結果</title>
+    <title><?php echo $search_word ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="http://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
@@ -123,13 +152,13 @@
                 <a href="index.html">トップページ</a>
             </li>
             <li>
-                <a href="news.html">ニュースジャンル選択</a>
+            <a href="#" onclick="javascript:window.history.back(-1);return false;">ジャンル選択画面</a>
             </li>
         </ul>
     </div>
     <section class="search">
         <p><?php echo $count ?>件のツイートを取得</p>
-        <h2>"<?php echo $_SESSION['search_word']; ?>"のTwitter検索結果</h2>
+        <h2><?php echo $search_word ?>に関するツイート</h2>
     <?php
     //*******debug mode*********
     //echo "debug mode<br><br>"; print_r($search_tweet);
