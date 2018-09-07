@@ -81,12 +81,12 @@
     flex: 0 0 300px;
 }
 
-.option_button #search_button {
+.option_button #search_button,.Trend #trend_search_button {
     display: flex;
     flex-wrap: wrap;
 }
 
-.option_button button {
+.option_button button,.Trend button {
     height: 50px;
     margin: 20px;
     flex: 0 1 300px;
