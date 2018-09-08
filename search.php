@@ -188,10 +188,14 @@
    <div class="search_option">
    <h3>検索条件</h3>
    <form action="search.php" method="get">
-       <input type="radio" name="option" value="recent" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE) echo "checked"; ?>>新しい順</input>
-       <input type="radio" name="option" value="popular" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>認証ユーザのみ表示</input> 
-       <input type="radio" name="option" value="rt" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>RT順</input> 
-       <input type="checkbox" name="only_today" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">今日のツイートに限定する</input>
+       <input type="radio" name="option" value="recent" id="select1" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE) echo "checked"; ?>>
+       <label for="select1">新しい順</label>
+       <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>
+       <label for="select2">認証済みユーザのみ</label> 
+       <input type="radio" name="option" value="rt" id="select3" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>
+       <label for="select3">RT順</label> 
+       <input type="checkbox" name="only_today" id="check1" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">
+       <label for="check1">今日のツイートに限定する</label>
     </form>
 </div>
 
