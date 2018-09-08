@@ -1,4 +1,5 @@
 <?php
+    header('Content-Type: text/html; charset=UTF-8');
     session_start();
     require_once('./twitteroauth/autoload.php');
 
@@ -47,6 +48,10 @@
         'tweet_mode' => 'extended',
         'result_type' => $tweet_sort
     );
+    if(strpos($_SESSION['search_word'],'dog') || strpos($_SESSION['search_word'],'cat') !== false){
+        $params[filter] = 'images';
+    }
+
 
     ob_implicit_flush(true);
     while(@ob_end_clean()); 
@@ -104,11 +109,16 @@
         'WorldMusic' => "国外音楽",
         'KPOP' => "KPOP",
         'anime' => "アニメ（総合）",
+        'cat' => "猫",
+        'dog' => "犬",
     );
     foreach($search_tag as $key => $value){
         if(strpos($_SESSION['search_word'],$key) !== false){
             $search_word = $value;
             break;
+        }else{
+            $search_word = $_SESSION['search_word'];
+            str_replace( " since:$today", "", $search_word);
         }
     }
 ?>
@@ -118,7 +128,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo $search_word ?></title>
+    <title>ツイート検索:<?php echo $search_word ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="http://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
@@ -157,20 +167,33 @@
         </ul>
     </div>
     <section class="search">
-        <p><?php echo $count ?>件のツイートを取得</p>
-        <h2><?php echo $search_word ?>に関するツイート</h2>
+        <div class="container_q">
+        <div class="chara">
+            <img src="./images/chibi.png" alt="chibi">
+        </div>
+        <div class="arrow_box">
+            <h2>
+                <strong><?php echo $search_word; ?></strong>に関するツイートを検索しました<br>
+            </h2>
+            <p>
+                <?php echo $count; ?>件のツイートを取得しました
+            </p>
+</div>
+</div>
     <?php
     //*******debug mode*********
     //echo "debug mode<br><br>"; print_r($search_tweet);
     //**************************
    ?>
-   <h3>並び替え</h3>
+   <div class="search_option">
+   <h3>検索条件</h3>
    <form action="search.php" method="get">
        <input type="radio" name="option" value="recent" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE) echo "checked"; ?>>新しい順</input>
-       <input type="radio" name="option" value="popular" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>人気度順</input> 
+       <input type="radio" name="option" value="popular" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>認証ユーザのみ表示</input> 
        <input type="radio" name="option" value="rt" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>RT順</input> 
        <input type="checkbox" name="only_today" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">今日のツイートに限定する</input>
     </form>
+</div>
 
    <div class="js-slider">
     <?php
@@ -213,6 +236,7 @@
             $search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} = array_reverse($search_tweet[$Tweet_num]->{"entities"}->{"hashtags"});
             foreach($search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} as $hashtags){
                 if(isset($hashtags)){
+                    mb_internal_encoding('UTF-8');
                     $hashtag_text = $hashtags->text;
                     $hashtag_indices = $hashtags->indices;
                     $left_text = mb_substr($Text,0,$hashtag_indices[0]);
