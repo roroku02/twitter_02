@@ -331,7 +331,7 @@
                 <p class="retweet_sentence"><i class="fas fa-retweet fa-fw"></i><?php echo $RT_User; ?>がリツイート</p>
             <?php } ?>
             <?php
-            if($RT_sort == TRUE){
+            if($RT_sort == TRUE || $Fav_sort == TRUE){
                 echo '<div class="rank">';
                 if($Tweet_num == 0){
                     echo '<img src="images/rank_1.png">';
