@@ -17,11 +17,16 @@
     $today = date("Y-m-d");
 
     $RT_sort = FALSE;
+    $Fav_sort = FALSE;
+
     if(isset($_GET['option'])){
         if($_GET['option'] == "popular"){
             $tweet_sort = $_GET['option'];
         }elseif($_GET['option'] == "rt"){
             $RT_sort = TRUE;
+            $tweet_sort = "recent";
+        }elseif($_GET['option'] == "fav"){
+            $Fav_sort = TRUE;
             $tweet_sort = "recent";
         }else{
             $tweet_sort = "recent";
@@ -57,6 +62,7 @@
     while(@ob_end_clean()); 
     
     if($RT_sort == TRUE){
+        print_r($search_tweet);
         echo "<div id = 'loading' style='position:absolute;top:50%;left:50%;'>";
         echo "<img src= './images/loading.gif'>";
         echo "<div id = 'percent'>";
@@ -82,9 +88,42 @@
             $sort[$key] = $value->retweet_count;
         }
         array_multisort($sort,SORT_DESC,$search_tweet);
+    }elseif($Fav_sort == TURE){
+        if(isset($search_tweet0)){
+            foreach($search_tweet as $key => $value){
+                $sort[$key] = $value -> favorite_count;
+            }
+            array_multisort($sort,SORT_DESC,$seach_tweet);
+        }else{
+        echo "<div id = 'loading' style='position:absolute;top:50%;left:50%;'>";
+        echo "<img src= './images/loading.gif'>";
+        echo "<div id = 'percent'>";
+        for($i = 0;$i < 10; $i++){
+            echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
+            echo ($i + 1) * 10 . "%完了<br/>";        
+            //print_r($params);
+            ${'search_tweets' . $i} = $connection -> get('search/tweets',$params);
+            unset(${'search_tweets' . $i} -> search_metadata);
+            ${'search_tweet' . $i} = ${'search_tweets' . $i} -> statuses;
+            $max_id = end(${'search_tweets' .$i}->statuses)->id;
+            if(isset($max_id)){
+                //echo "<br>------<br>next max_id :" . $max_id . "<br>-------<br>";
+                $params['max_id'] = $max_id;
+            }
+            //echo "$i : " . sizeof(${'search_tweet' . $i}) . "<br>";
+        }
+        echo "</div>";
+        $search_tweet = array_merge_recursive($search_tweet0,$search_tweet1,$search_tweet2,$search_tweet3,$search_tweet4,$search_tweet5,$search_tweet6,$search_tweet7,$search_tweet8,$search_tweet9);
+        echo "</div>";
+        
+        foreach($search_tweet as $key => $value){
+            $sort[$key] = $value -> favorite_count;
+        }
+        array_multisort($sort,SORT_DESC,$search_tweet);
+        }
     }else{
         $search_tweets = $connection -> get('search/tweets',$params);
-        $search_tweet = $search_tweets->statuses;
+        $search_tweet = $search_tweets -> statuses;
     }
     $count = sizeof($search_tweet);
     $search_tag = array(
@@ -188,12 +227,14 @@
    <div class="search_option">
    <h3>検索条件</h3>
    <form action="search.php" method="get">
-       <input type="radio" name="option" value="recent" id="select1" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE) echo "checked"; ?>>
+       <input type="radio" name="option" value="recent" id="select1" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE && $Fav_sort == FALSE) echo "checked"; ?>>
        <label for="select1">新しい順</label>
        <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>
        <label for="select2">認証済みユーザのみ</label> 
        <input type="radio" name="option" value="rt" id="select3" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>
        <label for="select3">RT順</label> 
+       <input type="radio" name="option" value="fav" id="select4" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $Fav_sort == TRUE) echo "checked"; ?>>
+       <label for="select4">いいね順</label>
        <input type="checkbox" name="only_today" id="check1" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">
        <label for="check1">今日のツイートに限定する</label>
     </form>

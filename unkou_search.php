@@ -127,16 +127,28 @@
     //echo "debug mode<br><br>"; print_r($search_tweet);
     //**************************
    ?>
+   <div class="search_option">
+       <form>
     <?php if(strpos($_SESSION['search_word'],'JR') !== false){ ?>
-        <input type="radio" name="rosen" value="0" id="biwako_kyoto_kobe">琵琶湖線・京都線・神戸線</a>
-        <input type="radio" name="rosen" value="1" id="kosei">湖西線</a>
-        <input type="radio" name="rosen" value="2" id="kusatsu">草津線</a>
-        <input type="radio" name="rosen" value="3" id="kanjo">環状線</a>
-        <input type="radio" name="rosen" value="4" id="takaraduka_tozai">宝塚線・東西線・学研都市線</a>
-        <input type="radio" name="rosen" value="5" id="kansai">関西線</a>
-        <input type="radio" name="rosen" value="6" id="nara">奈良線</a>
-        <input type="radio" name="rosen" value="7" id="expless">特急列車</a>
+        <input type="radio" name="rosen" value="0" id="biwako_kyoto_kobe">
+        <label for="biwako_kyoto_kobe">琵琶湖線・京都線・神戸線</label>
+        <input type="radio" name="rosen" value="1" id="kosei">
+        <label for="kosei">湖西線</label>
+        <input type="radio" name="rosen" value="2" id="kusatsu">
+        <label for="kusatsu">草津線</label>
+        <input type="radio" name="rosen" value="3" id="kanjo">
+        <label for="kanjo">環状線</label>
+        <input type="radio" name="rosen" value="4" id="takaraduka_tozai">
+        <label for="takaraduka_tozai">宝塚線・東西線・学研都市線</label>
+        <input type="radio" name="rosen" value="5" id="kansai">
+        <label for="kansai">関西線</label>
+        <input type="radio" name="rosen" value="6" id="nara">
+        <label for="nara">奈良線</label>
+        <input type="radio" name="rosen" value="7" id="expless">
+        <label for="expless">特急列車</label>
     <?php } ?>
+    </form>
+    </div>
         <div class="no-result">
             <p>選択した路線に15分以上の遅れは発生していません。</p>
         </div>

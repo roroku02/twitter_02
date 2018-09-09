@@ -164,13 +164,19 @@
 	color: #5b6164;
 	font-size: 16px;
 	text-align: center;
-	transition: .5s;
+    transition: .5s;
+    border-right: solid 1px#616161;
+}
+
+.search_option label:hover {
+    background-color: #d9e789;
 }
 .search_option label:first-of-type{
 	border-radius: 3px 0 0 3px;
 }
 .search_option label:last-of-type{
-	border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+    border-right: none;
 }
 .search_option input[type="radio"]:checked + label {
 	background-color: #a1b91d;
