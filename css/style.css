@@ -90,9 +90,13 @@
 }
 
 .container #search_button {
-    border-radius: 21px;
+    border-radius: 40px;
     font-size: 40px;
     margin: 8px;
+    padding: 10px auto;
+    border: 3px solid #62f76a;
+    background-color: #62f76a;
+    font-family: 'Anton', sans-serif;
 }
 
 .main #index_button {

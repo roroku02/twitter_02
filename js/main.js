@@ -42,6 +42,12 @@ if (windowWidth <= 768) {
     setTimeout(function () {
         $('#arrows').fadeOut("slow");
     }, 5000);
-
 }
 
+function check() {
+    if (document.search_form.search_word.value == "") {
+        window.alert("検索ワードが入力されていません！");
+        return false;
+    } else
+        return true;
+}

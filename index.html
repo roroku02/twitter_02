@@ -70,12 +70,14 @@
             <div class="self_search">
                 <img class="photo" src="images/search.svg" alt=""> SEARCH
             </div>
-            <form action="search.php" method="GET">
+            <form action="search.php" id="search_form" name="search_form" method="GET" onsubmit="return check()">
                 <input type="text" id="self_search_word" name="search_word" placeholder="検索ワード">
                 <input type="submit" id="search_button" value="SEARCH">
             </form>
         </div>
     </section>
 </body>
+
+<script type="text/javascript" src="js/main.js"></script>
 
 </html>

@@ -160,6 +160,8 @@
             str_replace( " since:$today", "", $search_word);
         }
     }
+    
+ 
 ?>
 
 <!DOCTYPE html>
@@ -216,6 +218,7 @@
             </h2>
             <p>
                 <?php echo $count; ?>件のツイートを取得しました
+                <?php if($count == 0){ echo "検索結果は0件でした。<br>検索条件を変えてもう一度試してください！"; }
             </p>
 </div>
 </div>
