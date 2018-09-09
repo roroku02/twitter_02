@@ -21,7 +21,7 @@
 
     if(isset($_GET['option'])){
         if($_GET['option'] == "popular"){
-            $tweet_sort = $_GET['option'];
+            $tweet_sort = "recent";
         }elseif($_GET['option'] == "rt"){
             $RT_sort = TRUE;
             $tweet_sort = "recent";
@@ -55,6 +55,12 @@
     );
     if(strpos($_SESSION['search_word'],'dog') || strpos($_SESSION['search_word'],'cat') !== false){
         $params[filter] = 'images';
+    }
+    if($_GET['option'] == 'popular'){
+        if(isset($params[filter])){
+            $params[filter] .= " verified";
+        }
+        $params[filter] = 'verified';
     }
 
 
@@ -218,7 +224,7 @@
             </h2>
             <p>
                 <?php echo $count; ?>件のツイートを取得しました
-                <?php if($count == 0){ echo "検索結果は0件でした。<br>検索条件を変えてもう一度試してください！"; }
+                <?php if($count == 0){ echo "検索結果は0件でした。<br>検索条件を変えてもう一度試してください！"; }?>
             </p>
 </div>
 </div>
@@ -232,7 +238,7 @@
    <form action="search.php" method="get">
        <input type="radio" name="option" value="recent" id="select1" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE && $Fav_sort == FALSE) echo "checked"; ?>>
        <label for="select1">新しい順</label>
-       <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($tweet_sort == "popular") echo "checked"; ?>>
+       <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($_GET['option'] == "popular") echo "checked"; ?>>
        <label for="select2">認証済みユーザのみ</label> 
        <input type="radio" name="option" value="rt" id="select3" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>
        <label for="select3">RT順</label> 

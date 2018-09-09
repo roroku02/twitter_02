@@ -24,30 +24,30 @@
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
         </div>
-    <div class="arrow_box">
-    <form action="search.php" method="GET">
-        <div id="youtube" style="display: block;">
-            <p>YouTubeに関する情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/youtube">はい</button>
-            <button type="button" onclick="change_question(youtube)">いいえ</button>
+        <div class="arrow_box">
+            <form action="search.php" method="GET">
+                <div id="youtube_tag" style="display: none;">
+                    <p>みんなが共有しているYouTube動画を表示しますか？</p>
+                    <button type="submit" name="search_word" value="@YouTubeさんから">はい</button>
+                    <button type="button" onclick="change_question(youtube_tag)">いいえ</button>
+                </div>
+                <div id="nico_tag" style="display: none;">
+                    <p>みんなが共有しているニコニコ動画の動画を表示しますか？</p>
+                    <button type="submit" name="search_word" value="#nicovideo OR #ニコニコ動画">はい</button>
+                    <button type="button" onclick="change_question(nico_tag)">いいえ</button>
+                </div>
+                <div id="youtube" style="display: block;">
+                    <p>YouTubeに関する情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/youtube">はい</button>
+                    <button type="button" onclick="change_question(youtube)">いいえ</button>
+                </div>
+                <div id="nicovideo" style="display: none;">
+                    <p>ニコニコ動画に関する情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/niconico">はい</button>
+                    <button type="button" onclick="change_question(nicovideo)">いいえ</button>
+                </div>
+            </form>
         </div>
-        <div id="nicovideo" style="display: none;">
-            <p>ニコニコ動画に関する情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/niconico">はい</button>
-            <button type="button" onclick="change_question(nicovideo)">いいえ</button>
-        </div>
-        <div id="youtube_tag" style="display: none;">
-            <p>みんなが共有しているYouTube動画を表示しますか？</p>
-            <button type="submit" name="search_word" value="@YouTubeさんから">はい</button>
-            <button type="button" onclick="change_question(youtube_tag)">いいえ</button>
-        </div>
-        <div id="nico_tag" style="display: none;">
-            <p>みんなが共有しているニコニコ動画の動画を表示しますか？</p>
-            <button type="submit" name="search_word" value="#nicovideo OR #ニコニコ動画">はい</button>
-            <button type="button" onclick="change_question(nico_tag)">いいえ</button>
-        </div>
-    </form>
-    </div>
     </div>
 </body>
 
