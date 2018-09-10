@@ -332,7 +332,11 @@
                         $n_url = "https://embed.nicovideo.jp/watch$n_path";
                     }
                 }
-            }
+            }   
+        $Verified_User = FALSE;
+        if($search_tweet[$Tweet_num]->{"user"}->{"verified"} == "1"){
+            $Verified_User = TRUE;
+        }
             
         ?>
             <ul class="slider-item">
@@ -364,6 +368,9 @@
                     <li id="User_ID">@
                         <?php echo $User_ID ?>
                     </li>
+                    <?php if($Verified_User == TRUE){ ?>
+                        <li id = "Verified_User" style="padding-left:5px;"><img src="images/verified_account.png"></li>
+                    <?php } ?>
                 </div>
                 <li>
                     <?php if($relative_time < 60){ 
