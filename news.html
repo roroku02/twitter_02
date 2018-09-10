@@ -7,13 +7,17 @@
     <title>ニュース</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
 </head>
 <script>
     function change_question(class_name) {
         class_name.style.display = "none";
-        if(class_name.nextElementSibling){
+        if (class_name.nextElementSibling) {
             class_name.nextElementSibling.style.display = "block";
-        }else{
+        } else {
             class_name.parentNode.children[0].style.display = "block";
         }
     }
@@ -21,44 +25,56 @@
 
 <body>
     <div class="container_q">
-    <div class="chara">
-        <img src="./images/chibi.png" alt="chibi">
-    </div>
-    <div class="arrow_box">
-        <form action="search.php" method="GET">
-        <div id="sougou" style="display: block;">
-            <p>総合ニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/total">はい</button>
-            <button type="button" onclick="change_question(sougou)">いいえ</button>
+        <div class="chara">
+            <img src="./images/chibi.png" alt="chibi">
         </div>
-        <div id="kokunai" style="display: none;">
-            <p>国内のニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/kokunai">はい</button>
-            <button type="button" onclick="change_question(kokunai)">いいえ</button>
+        <div class="arrow_box">
+            <form action="search.php" method="GET">
+                <div id="sougou" style="display: block;">
+                    <p>総合ニュースを表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/total">はい</button>
+                    <button type="button" onclick="change_question(sougou)">いいえ</button>
+                </div>
+                <div id="kokunai" style="display: none;">
+                    <p>国内のニュースを表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/kokunai">はい</button>
+                    <button type="button" onclick="change_question(kokunai)">いいえ</button>
+                </div>
+                <div id="kokugai" style="display: none;">
+                    <p>国外のニュースを表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/WorldNews">はい</button>
+                    <button type="button" onclick="change_question(kokugai)">いいえ</button>
+                </div>
+                <div id="entame" style="display: none;">
+                    <p>エンタメニュースを表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/entame">はい</button>
+                    <button type="button" onclick="change_question(entame)">いいえ</button>
+                </div>
+                <div id="it" style="display: none;">
+                    <p>ITのニュースを表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/IT">はい</button>
+                    <button type="button" onclick="change_question(it)">いいえ</button>
+                </div>
+                <div id="netnews" style="display: none;">
+                    <p>ネットニュースを表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/NetNews">はい</button>
+                    <button type="button" onclick="change_question(netnews)">いいえ</button>
+                </div>
+            </form>
+            <div class="page_info">
+                <a href="javascript:toggle()" class="toggle_button">ここでは何が調べられる？<i class="fas fa-chevron-circle-down" style="padding-left:5px;"></i></a>
+                <ul class="toggle_box">
+                    <li>総合ニュース</li>
+                    <li>国内ニュース</li>
+                    <li>国外ニュース</li>
+                    <li>エンタメニュース</li>
+                    <li>ITニュース</li>
+                    <li>ネットニュース</li>
+                </ul>
+            </div>
         </div>
-        <div id="kokugai" style="display: none;">
-            <p>国外のニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/WorldNews">はい</button>
-            <button type="button" onclick="change_question(kokugai)">いいえ</button>
-        </div>
-        <div id="entame" style="display: none;">
-            <p>エンタメニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/entame">はい</button>
-            <button type="button" onclick="change_question(entame)">いいえ</button>
-        </div>
-        <div id="it" style="display: none;">
-            <p>ITのニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/IT">はい</button>
-            <button type="button" onclick="change_question(it)">いいえ</button>
-        </div>
-        <div id="netnews" style="display: none;">
-            <p>ネットニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/NetNews">はい</button>
-            <button type="button" onclick="change_question(netnews)">いいえ</button>
-        </div>
-    </form>
-    </div>
     </div>
 </body>
+<script src="js/main.js"></script>
 
 </html>

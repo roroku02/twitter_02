@@ -51,3 +51,7 @@ function check() {
     } else
         return true;
 }
+
+function toggle() {
+    $(".toggle_box").slideToggle('slow');
+}
