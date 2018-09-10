@@ -19,29 +19,30 @@
     }
 </script>
 
-<body>    
+<body>
+    <a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
     <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
         </div>
-    <div class="arrow_box">
-    <form action="search.php" method="GET">
-        <div id="sougou" style="display: block;">
-            <p>スポーツの総合情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/sports">はい</button>
-            <button type="button" onclick="change_question(sougou)">いいえ</button>
-        </div>
-        <div id="baseball" style="display: none;">
-            <p>野球の情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/baseball">はい</button>
-            <button type="button" onclick="change_question(baseball)">いいえ</button>
-        </div>
-        <div id="soccer" style="display: none;">
-            <p>サッカーの情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/soccer">はい</button>
-            <button type="button" onclick="change_question(soccer)">いいえ</button>
-        </div>
-        <!--
+        <div class="arrow_box">
+            <form action="search.php" method="GET">
+                <div id="sougou" style="display: block;">
+                    <p>スポーツの総合情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/sports">はい</button>
+                    <button type="button" onclick="change_question(sougou)">いいえ</button>
+                </div>
+                <div id="baseball" style="display: none;">
+                    <p>野球の情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/baseball">はい</button>
+                    <button type="button" onclick="change_question(baseball)">いいえ</button>
+                </div>
+                <div id="soccer" style="display: none;">
+                    <p>サッカーの情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/soccer">はい</button>
+                    <button type="button" onclick="change_question(soccer)">いいえ</button>
+                </div>
+                <!--
         <div id="it" style="display: none;">
             <p>ITのニュースを表示しますか？</p>
             <button type="submit" name="search_word" value="list:semiapp/#">IT</button>
@@ -53,8 +54,8 @@
             <button type="button" onclick="change_question(netnews)">いいえ</button>
         </div>
     -->
-    </form>
-    </div>
+            </form>
+        </div>
     </div>
 </body>
 

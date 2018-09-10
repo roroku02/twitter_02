@@ -19,29 +19,30 @@
     }
 </script>
 
-<body>    
+<body>
+    <a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
     <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
         </div>
-    <div class="arrow_box">
-    <form action="unkou_search.php" method="GET">
-        <div id="jr" style="display: block;">
-            <p>JR（在来線）の情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/JR">はい</button>
-            <button type="button" onclick="change_question(jr)">いいえ</button>
-        </div>
-        <div id="hankyu" style="display: none;">
-            <p>阪急線の情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/hankyu 運転状況">はい</button>
-            <button type="button" onclick="change_question(hankyu)">いいえ</button>
-        </div>
-        <div id="shinkansen" style="display: none;">
-            <p>新幹線の情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/shinkansen">はい</button>
-            <button type="button" onclick="change_question(shinkansen)">いいえ</button>
-        </div>
-        <!--
+        <div class="arrow_box">
+            <form action="unkou_search.php" method="GET">
+                <div id="jr" style="display: block;">
+                    <p>JR（在来線）の情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/JR">はい</button>
+                    <button type="button" onclick="change_question(jr)">いいえ</button>
+                </div>
+                <div id="hankyu" style="display: none;">
+                    <p>阪急線の情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/hankyu 運転状況">はい</button>
+                    <button type="button" onclick="change_question(hankyu)">いいえ</button>
+                </div>
+                <div id="shinkansen" style="display: none;">
+                    <p>新幹線の情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/shinkansen">はい</button>
+                    <button type="button" onclick="change_question(shinkansen)">いいえ</button>
+                </div>
+                <!--
         <div id="smart" style="display: none;">
             <p>スマートフォンゲームの情報を表示しますか？</p>
             <button type="submit" name="search_word" value="list:semiapp/smartgame">はい</button>
@@ -53,8 +54,8 @@
             <button type="button" onclick="change_question(netnews)">いいえ</button>
         </div>
     -->
-    </form>
-    </div>
+            </form>
+        </div>
     </div>
 </body>
 

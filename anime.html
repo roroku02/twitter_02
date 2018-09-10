@@ -20,23 +20,24 @@
 </script>
 
 <body>
+    <a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
     <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
         </div>
-    <div class="arrow_box">
-    <form action="search.php" method="GET">
-        <div id="sougou" style="display: block;">
-            <p>アニメの総合情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/anime">はい</button>
-            <button type="button" onclick="change_question(sougou)">いいえ</button>
-        </div>
-        <div id="anime_tag" style="display: none;">
-            <p>各アニメの情報を表示しますか？</p>
-            <button type="button" onclick="window.location.href='anime.php'">はい</button>
-            <button type="button" onclick="change_question(anime_tag)">いいえ</button>
-        </div>
-        <!--
+        <div class="arrow_box">
+            <form action="search.php" method="GET">
+                <div id="sougou" style="display: block;">
+                    <p>アニメの総合情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/anime">はい</button>
+                    <button type="button" onclick="change_question(sougou)">いいえ</button>
+                </div>
+                <div id="anime_tag" style="display: none;">
+                    <p>各アニメの情報を表示しますか？</p>
+                    <button type="button" onclick="window.location.href='anime.php'">はい</button>
+                    <button type="button" onclick="change_question(anime_tag)">いいえ</button>
+                </div>
+                <!--
         <div id="it" style="display: none;">
             <p>ITのニュースを表示しますか？</p>
             <button type="submit" name="search_word" value="list:semiapp/#">IT</button>
@@ -48,8 +49,8 @@
             <button type="button" onclick="change_question(netnews)">いいえ</button>
         </div>
     -->
-    </form>
-    </div>
+            </form>
+        </div>
     </div>
 </body>
 

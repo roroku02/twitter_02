@@ -11,38 +11,39 @@
 <script>
     function change_question(class_name) {
         class_name.style.display = "none";
-        if(class_name.nextElementSibling){
+        if (class_name.nextElementSibling) {
             class_name.nextElementSibling.style.display = "block";
-        }else{
+        } else {
             class_name.parentNode.children[0].style.display = "block";
         }
     }
 </script>
 
-<body>    
+<body>
+    <a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
     <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
         </div>
-    <div class="arrow_box">
-    <form action="search.php" method="GET">
-        <div id="jpop" style="display: block;">
-            <p>JPOPの情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/JPOP">はい</button>
-            <button type="button" onclick="change_question(jpop)">いいえ</button>
+        <div class="arrow_box">
+            <form action="search.php" method="GET">
+                <div id="jpop" style="display: block;">
+                    <p>JPOPの情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/JPOP">はい</button>
+                    <button type="button" onclick="change_question(jpop)">いいえ</button>
+                </div>
+                <div id="world" style="display: none;">
+                    <p>洋楽の情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/WorldMusic">はい</button>
+                    <button type="button" onclick="change_question(world)">いいえ</button>
+                </div>
+                <div id="kpop" style="display: none;">
+                    <p>KPOPの情報を表示しますか？</p>
+                    <button type="submit" name="search_word" value="list:semiapp/KPOP">はい</button>
+                    <button type="button" onclick="change_question(kpop)">いいえ</button>
+                </div>
+            </form>
         </div>
-        <div id="world" style="display: none;">
-            <p>洋楽の情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/WorldMusic">はい</button>
-            <button type="button" onclick="change_question(world)">いいえ</button>
-        </div>
-        <div id="kpop" style="display: none;">
-            <p>KPOPの情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/KPOP">はい</button>
-            <button type="button" onclick="change_question(kpop)">いいえ</button>
-        </div>
-    </form>
-    </div>
     </div>
 </body>
 

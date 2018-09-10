@@ -23,6 +23,7 @@
     <script src="js/main.js"></script>
 </head>
 <body>
+<a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
 <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
