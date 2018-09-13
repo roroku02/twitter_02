@@ -76,6 +76,20 @@
         $search_tweet = $search_tweets->statuses;
     }
     $count = sizeof($search_tweet);
+    $search_tag = array(
+        'JR' => "JR線",
+        'hankyu' => "阪急線",
+        'shinkansen' => "新幹線",
+    );
+    foreach($search_tag as $key => $value){
+        if(strpos($_SESSION['search_word'],$key) !== false){
+            $search_word = $value;
+            break;
+        }else{
+            $search_word = $_SESSION['search_word'];
+            str_replace( " since:$today", "", $search_word);
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +97,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title><?php echo $_SESSION['search_word']; ?>の検索結果</title>
+    <title><?php echo $_SESSION['search_word']; ?>の遅延情報</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="http://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
@@ -120,15 +134,28 @@
         </ul>
     </div>
     <section class="search">
-        <p><?php echo $count ?>件のツイートを取得</p>
-        <h2>"<?php echo $_SESSION['search_word']; ?>"のTwitter検索結果</h2>
+    <div class="container_q">
+        <div class="chara">
+            <img src="./images/chibi.png" alt="chibi">
+        </div>
+        <div class="arrow_box">
+            <h2>
+                <strong><?php echo $search_word; ?></strong>に関する遅延情報を検索しました<br>
+            </h2>
+            <p>
+                <?php echo $count; ?>件のツイートを取得しました
+                <?php if($count == 0){ echo "現在選択した路線に大きな遅延は発生していないようです"; }?>
+            </p>
+        </div>
+    </div>
     <?php
     //*******debug mode*********
     //echo "debug mode<br><br>"; print_r($search_tweet);
     //**************************
    ?>
    <div class="search_option">
-       <form>
+        <h2>路線絞り込み</h2>
+        <form>
     <?php if(strpos($_SESSION['search_word'],'JR') !== false){ ?>
         <input type="radio" name="rosen" value="0" id="biwako_kyoto_kobe">
         <label for="biwako_kyoto_kobe">琵琶湖線・京都線・神戸線</label>

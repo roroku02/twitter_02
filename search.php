@@ -214,19 +214,19 @@
     </div>
     <section class="search">
         <div class="container_q">
-        <div class="chara">
-            <img src="./images/chibi.png" alt="chibi">
+            <div class="chara">
+                <img src="./images/chibi.png" alt="chibi">
+            </div>
+            <div class="arrow_box">
+                <h2>
+                    <strong><?php echo $search_word; ?></strong>に関するツイートを検索しました<br>
+                </h2>
+                <p>
+                    <?php echo $count; ?>件のツイートを取得しました
+                    <?php if($count == 0){ echo "検索結果は0件でした。<br>検索条件を変えてもう一度試してください！"; }?>
+                </p>
+            </div>
         </div>
-        <div class="arrow_box">
-            <h2>
-                <strong><?php echo $search_word; ?></strong>に関するツイートを検索しました<br>
-            </h2>
-            <p>
-                <?php echo $count; ?>件のツイートを取得しました
-                <?php if($count == 0){ echo "検索結果は0件でした。<br>検索条件を変えてもう一度試してください！"; }?>
-            </p>
-</div>
-</div>
     <?php
     //*******debug mode*********
     //echo "debug mode<br><br>"; print_r($search_tweet);
