@@ -69,13 +69,12 @@
     
     if($RT_sort == TRUE){
         print_r($search_tweet);
-        echo "<div id = 'loading' style='position:absolute;top:50%;left:50%;'>";
-        echo "<img src= './images/loading.gif'>";
-        echo "<div id = 'percent'>";
+        /*echo "<div id = 'loading' style='position:fixed;top:50%;left:50%;'>";
+        echo "<img src= './images/loading1.gif'>";
+        echo "<div id = 'percent'>";*/
         for($i = 0;$i < 10; $i++){
-            echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
-            echo ($i + 1) * 10 . "%完了<br/>";        
-            //print_r($params);
+            //echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
+            //echo ($i + 1) * 10 . "%完了<br/>";   
             ${'search_tweets' . $i} = $connection -> get('search/tweets',$params);
             unset(${'search_tweets' . $i} -> search_metadata);
             ${'search_tweet' . $i} = ${'search_tweets' . $i} -> statuses;
@@ -86,9 +85,9 @@
             }
             //echo "$i : " . sizeof(${'search_tweet' . $i}) . "<br>";
         }
-        echo "</div>";
+        //echo "</div>";
         $search_tweet = array_merge_recursive($search_tweet0,$search_tweet1,$search_tweet2,$search_tweet3,$search_tweet4,$search_tweet5,$search_tweet6,$search_tweet7,$search_tweet8,$search_tweet9);
-        echo "</div>";
+        //echo "</div>";
         
         foreach($search_tweet as $key => $value){
             $sort[$key] = $value->retweet_count;
@@ -101,8 +100,8 @@
             }
             array_multisort($sort,SORT_DESC,$seach_tweet);
         }else{
-        echo "<div id = 'loading' style='position:absolute;top:50%;left:50%;'>";
-        echo "<img src= './images/loading.gif'>";
+        echo "<div id = 'loading' style='position:fixed;top:50%;left:50%;'>";
+        echo "<img src= './images/loading1.gif'>";
         echo "<div id = 'percent'>";
         for($i = 0;$i < 10; $i++){
             echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
@@ -240,7 +239,7 @@
        <label for="select1">新しい順</label>
        <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($_GET['option'] == "popular") echo "checked"; ?>>
        <label for="select2">認証済みユーザのみ</label> 
-       <input type="radio" name="option" value="rt" id="select3" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>
+       <input type="radio" name="option" value="rt" id="select3" onclick="load()" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>
        <label for="select3">RT順</label> 
        <input type="radio" name="option" value="fav" id="select4" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $Fav_sort == TRUE) echo "checked"; ?>>
        <label for="select4">いいね順</label>
@@ -248,7 +247,9 @@
        <label for="check1">今日のツイートに限定する</label>
     </form>
 </div>
-
+<div class="load">
+</div>
+</div>
    <div class="js-slider">
     <?php
     $count = sizeof($search_tweet);
@@ -310,7 +311,7 @@
             //URL処理
             if(isset($search_tweet[$Tweet_num]->{"entities"}->{"urls"})){
                 foreach($search_tweet[$Tweet_num]->{"entities"}->{"urls"} as $urls){
-                    $Text = str_replace($urls->url,'<a href="'.$urls->expanded_url.'" class= "iframe">'.$urls->display_url.'</a>',$Text);
+                    $Text = str_replace($urls->url,'<a href="'.$urls->expanded_url.'" target="_blank">'.$urls->display_url.'</a>',$Text);
                     //YouTubeリンク取得・サムネイル取得
                     if(strpos($urls->expanded_url,'youtu.be') !== false){
                         $y_url = $urls->expanded_url;
@@ -429,6 +430,7 @@
     <div id="arrows"><img src="images/swipe.png">スワイプして次のツイートを表示します</div>
 
     </section>
+    <div id="fade">
     <script src="js/main.js"></script>
 </body>
 

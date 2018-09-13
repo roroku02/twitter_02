@@ -193,6 +193,7 @@
             $search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} = array_reverse($search_tweet[$Tweet_num]->{"entities"}->{"hashtags"});
             foreach($search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} as $hashtags){
                 if(isset($hashtags)){
+                    mb_internal_encoding('UTF-8');
                     $hashtag_text = $hashtags->text;
                     $hashtag_indices = $hashtags->indices;
                     $left_text = mb_substr($Text,0,$hashtag_indices[0]);

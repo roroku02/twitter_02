@@ -55,3 +55,17 @@ function check() {
 function toggle() {
     $(".toggle_box").slideToggle('slow');
 }
+
+function load() {
+    $('.load').append('<img src="images/loading.gif" alt="">');
+    $('#fade').css({
+        position: "absolute",
+        top: "0px",
+        left: "0px",
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#fff",
+        opacity: ".8",
+        zIndex: "1"
+    })
+}

@@ -33,6 +33,14 @@
     display: none;
 }
 
+.load img {
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    margin: -50px;
+    z-index: 100;
+}
+
 .main {
     display: flex;
     flex-wrap: wrap;
