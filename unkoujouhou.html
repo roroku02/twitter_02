@@ -7,6 +7,10 @@
     <title>運行情報</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+
 </head>
 <script>
     function change_question(class_name) {
@@ -42,21 +46,20 @@
                     <button type="submit" name="search_word" value="list:semiapp/shinkansen">はい</button>
                     <button type="button" onclick="change_question(shinkansen)">いいえ</button>
                 </div>
-                <!--
-        <div id="smart" style="display: none;">
-            <p>スマートフォンゲームの情報を表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/smartgame">はい</button>
-            <button type="button" onclick="change_question(smart)">いいえ</button>
-        </div>
-        <div id="netnews" style="display: none;">
-            <p>ネットニュースを表示しますか？</p>
-            <button type="submit" name="search_word" value="list:semiapp/#">ネットニュース</button>
-            <button type="button" onclick="change_question(netnews)">いいえ</button>
-        </div>
-    -->
             </form>
+            <div class="page_info">
+                <a href="javascript:toggle()" class="toggle_button">ここでは何が調べられる？<i class="fas fa-chevron-circle-down"
+                        style="padding-left:5px;"></i></a>
+                <ul class="toggle_box">
+                    <li>JR線（関西）</li>
+                    <li>阪急線</li>
+                    <li>東海道新幹線</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
+
+<script src="js/main.js"></script>
 
 </html>

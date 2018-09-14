@@ -7,6 +7,10 @@
     <title>動画</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
 </head>
 <script>
     function change_question(class_name) {
@@ -27,7 +31,7 @@
         </div>
         <div class="arrow_box">
             <form action="search.php" method="GET">
-                <div id="youtube_tag" style="display: none;">
+                <div id="youtube_tag" style="display: block;">
                     <p>みんなが共有しているYouTube動画を表示しますか？</p>
                     <button type="submit" name="search_word" value="@YouTubeさんから">はい</button>
                     <button type="button" onclick="change_question(youtube_tag)">いいえ</button>
@@ -37,7 +41,7 @@
                     <button type="submit" name="search_word" value="#nicovideo OR #ニコニコ動画">はい</button>
                     <button type="button" onclick="change_question(nico_tag)">いいえ</button>
                 </div>
-                <div id="youtube" style="display: block;">
+                <div id="youtube" style="display: none;">
                     <p>YouTubeに関する情報を表示しますか？</p>
                     <button type="submit" name="search_word" value="list:semiapp/youtube">はい</button>
                     <button type="button" onclick="change_question(youtube)">いいえ</button>
@@ -48,8 +52,20 @@
                     <button type="button" onclick="change_question(nicovideo)">いいえ</button>
                 </div>
             </form>
+            <div class="page_info">
+                <a href="javascript:toggle()" class="toggle_button">ここでは何が調べられる？<i class="fas fa-chevron-circle-down"
+                        style="padding-left:5px;"></i></a>
+                <ul class="toggle_box">
+                    <li>共有された動画（YouTube）</li>
+                    <li>共有された動画（ニコニコ）</li>
+                    <li>YouTuberのツイート</li>
+                    <li>ニコニコ動画投稿者のツイート</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
+
+<script src="js/main.js"></script>
 
 </html>
