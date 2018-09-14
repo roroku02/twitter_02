@@ -3,28 +3,31 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>アニメ</title>
+    <title>アニメタグ検索</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"  href="css/style.css" />
 </head>
 <body>
+    <div class="bread">
+        <a href="index.html">トップページ</a>
+    </div>
     <div class="form">
         <h1>アニメタグ検索</h1>
-        <form action="anime.php" method="get">
+        <form action="anime.php" method="get" id="anime_tag_search_button">
             <select name="year">
-                <option value="2014">2014</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
+                <option value="2014" <?php if($_GET['year'] == 2014) echo "selected"; ?>>2014</option>
+                <option value="2015" <?php if($_GET['year'] == 2015) echo "selected"; ?>>2015</option>
+                <option value="2016" <?php if($_GET['year'] == 2016) echo "selected"; ?>>2016</option>
+                <option value="2017" <?php if($_GET['year'] == 2017) echo "selected"; ?>>2017</option>
+                <option value="2018" <?php if($_GET['year'] == 2018) echo "selected"; ?>>2018</option>
             </select>
             <select name="season">
-                <option value="1">冬</option>
-                <option value="2">春</option>
-                <option value="3">夏</option>
-                <option value="4">秋</option>
+                <option value="1" <?php if($_GET['season'] == 1) echo "selected"; ?>>冬</option>
+                <option value="2" <?php if($_GET['season'] == 2) echo "selected"; ?>>春</option>
+                <option value="3" <?php if($_GET['season'] == 3) echo "selected"; ?>>夏</option>
+                <option value="4" <?php if($_GET['season'] == 4) echo "selected"; ?>>秋</option>
             </select>
-            <input type="submit" value="表示">
+            <input type="submit" value="表示" id="anime_tag_search_submit">
         </form>
     <?php
     $year = $_GET['year'];
