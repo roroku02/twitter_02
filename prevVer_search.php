@@ -1,12 +1,17 @@
 <?php
     header('Content-Type: text/html; charset=UTF-8');
     session_start();
-    require_once('TwitterAppOAuth.php');
+    require_once('./twitteroauth/autoload.php');
+
+    use Abraham\TwitterOAuth\TwitterOAuth;
 
     $ConsumerKey = "7NOMZlf2flq1aefQbG1GJy3Zu";
     $ConsumerSecret = "XHKNEFh2TARhY2hIU2ilnaDAIvKd90fq8J2Lap7DLw5lMuVl6m";
+    $AccessToken = "1010729931750367233-fS26kr6N9NvWTEwBpqlCOR88H1lXve";
+    $AccessTokenSecret = "TkWef0v1hjONZsQSmc4QcTWUuOujWYEn3VLss9JqNl1R5";
 
-    $connection = new TwitterAppOAuth($ConsumerKey,$ConsumerSecret);
+    $connection = new TwitterOAuth($ConsumerKey,$ConsumerSecret,$AccessToken,$AccessTokenSecret);
+
     $tweet = "";
     $now_time = time();
     $today = date("Y-m-d");
@@ -70,31 +75,28 @@
         for($i = 0;$i < 10; $i++){
             echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
             echo ($i + 1) * 10 . "%完了<br/>";   
-            ${'search_tweets_obj' . $i} = $connection -> get('search/tweets',$params);
-            ${'search_tweets' . $i} = json_decode(${'search_tweets_obj' . $i},true);
-            unset(${'search_tweets' . $i}[search_metadata]);
-            ${'search_tweet' . $i} = ${'search_tweets' . $i}[statuses];
-            $max_id = end(${'search_tweets' .$i}[statuses])[id_str];
+            ${'search_tweets' . $i} = $connection -> get('search/tweets',$params);
+            unset(${'search_tweets' . $i} -> search_metadata);
+            ${'search_tweet' . $i} = ${'search_tweets' . $i} -> statuses;
+            $max_id = end(${'search_tweets' .$i}->statuses)->id;
             if(isset($max_id)){
-                if(PHP_INT_SIZE == 4)
-                    $params['max_id'] = $max_id;
-                elseif(PHP_INT_SIZE == 8)
-                    $params['max_id'] = $max_id - 1;
+                //echo "<br>------<br>next max_id :" . $max_id . "<br>-------<br>";
+                $params['max_id'] = $max_id;
             }
             //echo "$i : " . sizeof(${'search_tweet' . $i}) . "<br>";
         }
-        echo "</div>";
+        //echo "</div>";
         $search_tweet = array_merge_recursive($search_tweet0,$search_tweet1,$search_tweet2,$search_tweet3,$search_tweet4,$search_tweet5,$search_tweet6,$search_tweet7,$search_tweet8,$search_tweet9);
-        echo "</div>";
+        //echo "</div>";
         
         foreach($search_tweet as $key => $value){
-            $sort[$key] = $value[retweet_count];
+            $sort[$key] = $value->retweet_count;
         }
         array_multisort($sort,SORT_DESC,$search_tweet);
     }elseif($Fav_sort == TURE){
         if(isset($search_tweet0)){
             foreach($search_tweet as $key => $value){
-                $sort[$key] = $value[favorite_count];
+                $sort[$key] = $value -> favorite_count;
             }
             array_multisort($sort,SORT_DESC,$seach_tweet);
         }else{
@@ -105,11 +107,10 @@
             echo "<script>document.getElementById( 'percent' ).innerHTML = ''</script>";
             echo ($i + 1) * 10 . "%完了<br/>";        
             //print_r($params);
-            ${'search_tweets_obj' . $i} = $connection -> get('search/tweets',$params);
-            ${'search_tweets' . $i} = json_decode(${'search_tweets_obj' . $i},true);
-            unset(${'search_tweets' . $i}[search_metadata]);
-            ${'search_tweet' . $i} = ${'search_tweets' . $i}[statuses];
-            $max_id = end(${'search_tweets' .$i}[statuses])[id_str];
+            ${'search_tweets' . $i} = $connection -> get('search/tweets',$params);
+            unset(${'search_tweets' . $i} -> search_metadata);
+            ${'search_tweet' . $i} = ${'search_tweets' . $i} -> statuses;
+            $max_id = end(${'search_tweets' .$i}->statuses)->id;
             if(isset($max_id)){
                 //echo "<br>------<br>next max_id :" . $max_id . "<br>-------<br>";
                 $params['max_id'] = $max_id;
@@ -121,14 +122,13 @@
         echo "</div>";
         
         foreach($search_tweet as $key => $value){
-            $sort[$key] = $value[favorite_count];
+            $sort[$key] = $value -> favorite_count;
         }
         array_multisort($sort,SORT_DESC,$search_tweet);
         }
     }else{
-        $search_tweets_obj = $connection -> get('search/tweets',$params);
-        $search_tweets = json_decode($search_tweets_obj,true);
-        $search_tweet = $search_tweets[statuses];
+        $search_tweets = $connection -> get('search/tweets',$params);
+        $search_tweet = $search_tweets -> statuses;
     }
     $count = sizeof($search_tweet);
     $search_tag = array(
@@ -254,46 +254,46 @@
     <?php
     $count = sizeof($search_tweet);
     for($Tweet_num = 0; $Tweet_num < 100; $Tweet_num++){
-        $TweetID = $search_tweet[$Tweet_num]{"id_str"};
-        $Date = $search_tweet[$Tweet_num]{"created_at"};
+        $TweetID = $search_tweet[$Tweet_num]->{"id"};
+        $Date = $search_tweet[$Tweet_num]->{"created_at"};
         $Tweet_time = strtotime($Date);
         $relative_time = $now_time - $Tweet_time;
-        $Text = $search_tweet[$Tweet_num]{"full_text"};
-        $User_ID = $search_tweet[$Tweet_num]{"user"}{"screen_name"};
-        $User_Name = $search_tweet[$Tweet_num]{"user"}{"name"};
-        $Profile_image_URL = $search_tweet[$Tweet_num]{"user"}{"profile_image_url_https"};
-        $Retweet_Count = $search_tweet[$Tweet_num]{"retweet_count"};
-        $Favorite_Count = $search_tweet[$Tweet_num]{"favorite_count"};
+        $Text = $search_tweet[$Tweet_num]->{"full_text"};
+        $User_ID = $search_tweet[$Tweet_num]->{"user"}->{"screen_name"};
+        $User_Name = $search_tweet[$Tweet_num]->{"user"}->{"name"};
+        $Profile_image_URL = $search_tweet[$Tweet_num]->{"user"}->{"profile_image_url_https"};
+        $Retweet_Count = $search_tweet[$Tweet_num]->{"retweet_count"};
+        $Favorite_Count = $search_tweet[$Tweet_num]->{"favorite_count"};
         $Retweet_TRUE = FALSE;
         $media_URL = NULL;
 
         //RT処理
-        if(isset($search_tweet[$Tweet_num]{"retweeted_status"})){
+        if(isset($search_tweet[$Tweet_num]->{"retweeted_status"})){
             $Retweet_TRUE = TRUE;
-            $Date = $search_tweet[$Tweet_num]{"retweeted_status"}{"created_at"};
+            $Date = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"created_at"};
             $RT_User = $User_Name;
-            $Text = $search_tweet[$Tweet_num]{"retweeted_status"}{"full_text"};
-            $User_ID = $search_tweet[$Tweet_num]{"retweeted_status"}{"user"}{"screen_name"};
-            $User_Name = $search_tweet[$Tweet_num]{"retweeted_status"}{"user"}{"name"};
-            $Profile_image_URL = $search_tweet[$Tweet_num]{"retweeted_status"}{"user"}{"profile_image_url_https"};
-            $Retweet_Count = $search_tweet[$Tweet_num]{"retweeted_status"}{"retweet_count"};
-            $Favorite_Count = $search_tweet[$Tweet_num]{"retweeted_status"}{"favorite_count"};    
-            if(isset($search_tweet[$Tweet_num]{"retweeted_status"}{"entities"}{"hashtags"}));
-                $search_tweet[$Tweet_num]{"entities"}{"hashtags"} = $search_tweet[$Tweet_num]{"retweeted_status"}{"entities"}{"hashtags"};
-            if(isset($search_tweetA[$Tweet_num]{"retweeted_status"}{"extended_entities"}{"media"})){
-                foreach($search_tweet[$Tweet_num]{"retweeted_status"}{"extended_entities"}{"media"} as $media){
-                    $media_URL[] = $mediamedia_url_https;
+            $Text = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"full_text"};
+            $User_ID = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"user"}->{"screen_name"};
+            $User_Name = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"user"}->{"name"};
+            $Profile_image_URL = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"user"}->{"profile_image_url_https"};
+            $Retweet_Count = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"retweet_count"};
+            $Favorite_Count = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"favorite_count"};    
+            if(isset($search_tweet[$Tweet_num]->{"retweeted_status"}->{"entities"}->{"hashtags"}));
+                $search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} = $search_tweet[$Tweet_num]->{"retweeted_status"}->{"entities"}->{"hashtags"};
+            if(isset($search_tweetA[$Tweet_num]->{"retweeted_status"}->{"extended_entities"}->{"media"})){
+                foreach($search_tweet[$Tweet_num]->{"retweeted_status"}->{"extended_entities"}->{"media"} as $media){
+                    $media_URL[] = $media->media_url_https;
                 }
             }
         }
 
             //ハッシュタグ処理
-            $search_tweet[$Tweet_num]{"entities"}{"hashtags"} = array_reverse($search_tweet[$Tweet_num]{"entities"}{"hashtags"});
-            foreach($search_tweet[$Tweet_num]{"entities"}{"hashtags"} as $hashtags){
+            $search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} = array_reverse($search_tweet[$Tweet_num]->{"entities"}->{"hashtags"});
+            foreach($search_tweet[$Tweet_num]->{"entities"}->{"hashtags"} as $hashtags){
                 if(isset($hashtags)){
                     mb_internal_encoding('UTF-8');
-                    $hashtag_text = $hashtags[text];
-                    $hashtag_indices = $hashtags[indices];
+                    $hashtag_text = $hashtags->text;
+                    $hashtag_indices = $hashtags->indices;
                     $left_text = mb_substr($Text,0,$hashtag_indices[0]);
                     $right_text = mb_substr($Text,($hashtag_indices[0] + ($hashtag_indices[1] - $hashtag_indices[0])));
                     $after_text = '<a href="http://localhost/twitter_02/search.php?search_word=' . rawurlencode("#" . $hashtag_text) . '" class = "iframe">#' . $hashtag_text . '</a>';
@@ -302,26 +302,26 @@
             }
 
             //メディア処理
-            if(isset($search_tweet[$Tweet_num]{"extended_entities"}{"media"})){
-                foreach($search_tweet[$Tweet_num]{"extended_entities"}{"media"} as $media){
-                    $media_URL[] = $media[media_url_https];
+            if(isset($search_tweet[$Tweet_num]->{"extended_entities"}->{"media"})){
+                foreach($search_tweet[$Tweet_num]->{"extended_entities"}->{"media"} as $media){
+                    $media_URL[] = $media->media_url_https;
                 }
             }
 
             //URL処理
-            if(isset($search_tweet[$Tweet_num]{"entities"}{"urls"})){
-                foreach($search_tweet[$Tweet_num]{"entities"}{"urls"} as $urls){
-                    $Text = str_replace($urls[url],'<a href="'.$urls[expanded_url].'" target="_blank">'.$urls[display_url].'</a>',$Text);
+            if(isset($search_tweet[$Tweet_num]->{"entities"}->{"urls"})){
+                foreach($search_tweet[$Tweet_num]->{"entities"}->{"urls"} as $urls){
+                    $Text = str_replace($urls->url,'<a href="'.$urls->expanded_url.'" target="_blank">'.$urls->display_url.'</a>',$Text);
                     //YouTubeリンク取得・サムネイル取得
-                    if(strpos($urls[expanded_url],'youtu.be') !== false){
-                        $y_url = $urls[expanded_url];
+                    if(strpos($urls->expanded_url,'youtu.be') !== false){
+                        $y_url = $urls->expanded_url;
                         $y_path = parse_url($y_url,PHP_URL_PATH);
                         $y_thumb = "http://i.ytimg.com/vi$y_path/mqdefault.jpg";
                         $y_url = "http://www.youtube.com/embed$y_path";
                     }
                     //ニコニコ動画リンク取得・サムネイル取得
-                    if(strpos($urls[expanded_url],'nico.ms') !== false){
-                        $n_url = $urls[expanded_url];
+                    if(strpos($urls->expanded_url,'nico.ms') !== false){
+                        $n_url = $urls->expanded_url;
                         $n_path = parse_url($n_url,PHP_URL_PATH);
                         $n_del = array('/sm','/so','/nm');
                         $n_id = str_replace($n_del,'',$n_path);
@@ -335,7 +335,7 @@
                 }
             }   
         $Verified_User = FALSE;
-        if($search_tweet[$Tweet_num]{"user"}{"verified"} == "1"){
+        if($search_tweet[$Tweet_num]->{"user"}->{"verified"} == "1"){
             $Verified_User = TRUE;
         }
             
