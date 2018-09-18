@@ -24,7 +24,12 @@
 </script>
 
 <body>
-    <a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
+    <div class="bread">
+        <ul>
+            <li><a href="index.html">トップページ</a></li>
+            <li>ジャンル選択</li>
+        </ul>
+    </div>
     <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
@@ -63,7 +68,8 @@
                 </div>
             </form>
             <div class="page_info">
-                <a href="javascript:toggle()" class="toggle_button">ここでは何が調べられる？<i class="fas fa-chevron-circle-down" style="padding-left:5px;"></i></a>
+                <a href="javascript:toggle()" class="toggle_button">ここでは何が調べられる？<i class="fas fa-chevron-circle-down"
+                        style="padding-left:5px;"></i></a>
                 <ul class="toggle_box">
                     <li>総合ニュース</li>
                     <li>国内ニュース</li>

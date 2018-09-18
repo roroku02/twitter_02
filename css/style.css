@@ -54,12 +54,13 @@
 
 .main .container:not(:last-child):hover {
     opacity: 0.5;
+    transition: .2s;
 }
 
 .container a {
     font-family: 'Anton', sans-serif;
     font-size: 48px;
-    color: white;
+    color: rgb(56, 56, 56);
     text-decoration: none;
 }
 
@@ -67,13 +68,19 @@
     padding-left: 10px;
 }
 .main .c1{
-    background-color: rgb(0, 172, 114);
+    background-color: #BEFFB8;
 }
 .main .c2 {
-    background-color: blueviolet;
+    background-color: #FFF2C8;
 }
 .main .c3 {
-    background-color: palevioletred;
+    background-color: #FFD9D2;
+}
+.main .c4 {
+    background-color: #AEDEFF;
+}
+.main .c5 {
+    background-color: #E2BCFF;
 }
 
 .container .photo {
@@ -85,7 +92,7 @@
 .self_search {
     font-family: 'Anton', sans-serif;
     font-size: 48px;
-    color: white;
+    color: rgb(56, 56, 56);
     text-decoration: none;
 }
 
@@ -111,6 +118,27 @@
     height: 50px;
     margin: 20px;
     flex: 0 0 300px;
+}
+
+.bread a::after {
+        content: "\f105";
+        font-weight: 900;
+        font-family: "Font Awesome 5 Free";
+        padding: 0 5px;
+}
+
+.bread ul {
+    list-style: none;
+    display: flex;
+}
+
+.bread a {
+    text-decoration: none;
+}
+
+.bread a:hover {
+    background-color: #55acee;
+    transition: .2s;
 }
 
 .option_button #search_button,.Trend #trend_search_button {

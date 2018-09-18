@@ -156,6 +156,31 @@
         'cat' => "猫",
         'dog' => "犬",
     );
+    $prev_url_list = array(
+        'total' => "news.html",
+        'kokunai' => "news.html",
+        'NetNews' => "news.html",
+        'WorldNews' => "news.html",
+        'IT' => "news.html",
+        'NetNews' => "news.html",
+        'soccer' => "sports.html",
+        'baseball' => "sports.html",
+        'sports' => "sports.html",
+        'youtube' => "douga.html",
+        'niconico' => "douga.html",
+        '#nicovideo' => "douga.html",
+        "@YouTubeさん" => "douga.html",
+        'nintendo' => "game.html",
+        'PS' => "douga.html",
+        'smartgame' => "game.html",
+        'game' => "game.html",
+        'JPOP' => "music.html",
+        'WorldMusic' => "music.html",
+        'KPOP' => "music.html",
+        'anime' => "anime.html",
+        'cat' => "animal.html",
+        'dog' => "animal.html",
+    );
     foreach($search_tag as $key => $value){
         if(strpos($_SESSION['search_word'],$key) !== false){
             $search_word = $value;
@@ -163,6 +188,14 @@
         }else{
             $search_word = $_SESSION['search_word'];
             str_replace( " since:$today", "", $search_word);
+        }
+    }
+    foreach($prev_url_list as $key => $value){
+        if(strpos($_SESSION['search_word'],$key) !== false){
+            $prev_url = $value;
+            break;
+        }else {
+            $prev_url = "index.html";
         }
     }
     
@@ -208,7 +241,10 @@
                 <a href="index.html">トップページ</a>
             </li>
             <li>
-            <a href="#" onclick="javascript:window.history.back(-1);return false;">ジャンル選択画面</a>
+                <a href="<?php echo $prev_url; ?>">ジャンル選択画面</a>
+            </li>
+            <li>
+                検索結果
             </li>
         </ul>
     </div>

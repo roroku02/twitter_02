@@ -131,6 +131,9 @@
             <li>
                 <a href="unkoujouhou.html">鉄道会社選択</a>
             </li>
+            <li>
+                検索結果
+            </li>
         </ul>
     </div>
     <section class="search">

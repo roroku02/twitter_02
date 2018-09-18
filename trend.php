@@ -26,8 +26,13 @@
 
 </head>
 <body>
-<a href="#" onclick="javascript:window.history.back(-1);return false;">前のページに戻る</a>
-<div class="container_q">
+    <div class="bread">
+        <ul>
+            <li><a href="index.html">トップページ</a></li>
+            <li>トレンドワード選択</li>
+        </ul>
+    </div>
+    <div class="container_q">
         <div class="chara">
             <img src="./images/chibi.png" alt="chibi">
         </div>
