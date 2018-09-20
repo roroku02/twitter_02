@@ -13,6 +13,7 @@
 
     $RT_sort = FALSE;
     $Fav_sort = FALSE;
+    $only_verify = FALSE;
 
     if(isset($_GET['option'])){
         if($_GET['option'] == "popular"){
@@ -50,13 +51,14 @@
         'result_type' => $tweet_sort
     );
     if(strpos($_SESSION['search_word'],'dog') || strpos($_SESSION['search_word'],'cat') !== false){
-        $params[filter] = 'images';
+        $params['filter'] = 'images';
     }
     if($_GET['option'] == 'popular'){
-        if(isset($params[filter])){
-            $params[filter] .= " verified";
+        $only_verify = TRUE;
+        if(isset($params['filter'])){
+            $params['filter'] .= " verified";
         }
-        $params[filter] = 'verified';
+        $params['filter'] = 'verified';
     }
 
 
@@ -73,9 +75,9 @@
             echo ($i + 1) * 10 . "%完了<br/>";   
             ${'search_tweets_obj' . $i} = $connection -> get('search/tweets',$params);
             ${'search_tweets' . $i} = json_decode(${'search_tweets_obj' . $i},true);
-            unset(${'search_tweets' . $i}[search_metadata]);
-            ${'search_tweet' . $i} = ${'search_tweets' . $i}[statuses];
-            $max_id = end(${'search_tweets' .$i}[statuses])[id_str];
+            unset(${'search_tweets' . $i}['search_metadata']);
+            ${'search_tweet' . $i} = ${'search_tweets' . $i}['statuses'];
+            $max_id = end(${'search_tweets' .$i}['statuses'])['id_str'];
             if(isset($max_id)){
                 if(PHP_INT_SIZE == 4)
                     $params['max_id'] = $max_id;
@@ -89,13 +91,13 @@
         echo "</div>";
         
         foreach($search_tweet as $key => $value){
-            $sort[$key] = $value[retweet_count];
+            $sort[$key] = $value['retweet_count'];
         }
         array_multisort($sort,SORT_DESC,$search_tweet);
-    }elseif($Fav_sort == TURE){
+    }elseif($Fav_sort == TRUE){
         if(isset($search_tweet0)){
             foreach($search_tweet as $key => $value){
-                $sort[$key] = $value[favorite_count];
+                $sort[$key] = $value['favorite_count'];
             }
             array_multisort($sort,SORT_DESC,$seach_tweet);
         }else{
@@ -108,9 +110,9 @@
             //print_r($params);
             ${'search_tweets_obj' . $i} = $connection -> get('search/tweets',$params);
             ${'search_tweets' . $i} = json_decode(${'search_tweets_obj' . $i},true);
-            unset(${'search_tweets' . $i}[search_metadata]);
-            ${'search_tweet' . $i} = ${'search_tweets' . $i}[statuses];
-            $max_id = end(${'search_tweets' .$i}[statuses])[id_str];
+            unset(${'search_tweets' . $i}['search_metadata']);
+            ${'search_tweet' . $i} = ${'search_tweets' . $i}['statuses'];
+            $max_id = end(${'search_tweets' .$i}['statuses'])['id_str'];
             if(isset($max_id)){
                 //echo "<br>------<br>next max_id :" . $max_id . "<br>-------<br>";
                 $params['max_id'] = $max_id;
@@ -122,14 +124,14 @@
         echo "</div>";
         
         foreach($search_tweet as $key => $value){
-            $sort[$key] = $value[favorite_count];
+            $sort[$key] = $value['favorite_count'];
         }
         array_multisort($sort,SORT_DESC,$search_tweet);
         }
     }else{
         $search_tweets_obj = $connection -> get('search/tweets',$params);
         $search_tweets = json_decode($search_tweets_obj,true);
-        $search_tweet = $search_tweets[statuses];
+        $search_tweet = $search_tweets['statuses'];
     }
     $count = sizeof($search_tweet);
     $search_tag = array(
@@ -271,15 +273,17 @@
    ?>
    <div class="search_option">
    <h3>検索条件</h3>
-   <form action="search.php" method="get">
+   <form action="search.php" method="get" class="sort">
        <input type="radio" name="option" value="recent" id="select1" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == FALSE && $Fav_sort == FALSE) echo "checked"; ?>>
        <label for="select1">新しい順</label>
-       <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($_GET['option'] == "popular") echo "checked"; ?>>
-       <label for="select2">認証済みユーザのみ</label> 
        <input type="radio" name="option" value="rt" id="select3" onclick="load()" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $RT_sort == TRUE) echo "checked"; ?>>
        <label for="select3">RT順</label> 
-       <input type="radio" name="option" value="fav" id="select4" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $Fav_sort == TRUE) echo "checked"; ?>>
+       <input type="radio" name="option" value="fav" id="select4" onclick="load()" onchange="this.form.submit()" <?php if($tweet_sort == "recent" && $Fav_sort == TRUE) echo "checked"; ?>>
        <label for="select4">いいね順</label>
+       <input type="radio" name="option" value="popular" id="select2" onchange="this.form.submit()" <?php if($only_verify == TRUE) echo "checked"; ?>>
+       <label for="select2">認証済みユーザのみ（新しい順）</label>
+    </form>
+    <form action="search.php" mehotd="get" class="only_today">
        <input type="checkbox" name="only_today" id="check1" value="1" <?php if($only_today == TRUE) echo "checked"?>  onchange="this.form.submit()">
        <label for="check1">今日のツイートに限定する</label>
     </form>
@@ -329,8 +333,8 @@
             foreach($search_tweet[$Tweet_num]{"entities"}{"hashtags"} as $hashtags){
                 if(isset($hashtags)){
                     mb_internal_encoding('UTF-8');
-                    $hashtag_text = $hashtags[text];
-                    $hashtag_indices = $hashtags[indices];
+                    $hashtag_text = $hashtags['text'];
+                    $hashtag_indices = $hashtags['indices'];
                     $left_text = mb_substr($Text,0,$hashtag_indices[0]);
                     $right_text = mb_substr($Text,($hashtag_indices[0] + ($hashtag_indices[1] - $hashtag_indices[0])));
                     $after_text = '<a href="http://localhost/twitter_02/search.php?search_word=' . rawurlencode("#" . $hashtag_text) . '" class = "iframe">#' . $hashtag_text . '</a>';
@@ -341,24 +345,24 @@
             //メディア処理
             if(isset($search_tweet[$Tweet_num]{"extended_entities"}{"media"})){
                 foreach($search_tweet[$Tweet_num]{"extended_entities"}{"media"} as $media){
-                    $media_URL[] = $media[media_url_https];
+                    $media_URL[] = $media['media_url_https'];
                 }
             }
 
             //URL処理
             if(isset($search_tweet[$Tweet_num]{"entities"}{"urls"})){
                 foreach($search_tweet[$Tweet_num]{"entities"}{"urls"} as $urls){
-                    $Text = str_replace($urls[url],'<a href="'.$urls[expanded_url].'" target="_blank">'.$urls[display_url].'</a>',$Text);
+                    $Text = str_replace($urls['url'],'<a href="'.$urls['expanded_url'].'" target="_blank">'.$urls['display_url'].'</a>',$Text);
                     //YouTubeリンク取得・サムネイル取得
-                    if(strpos($urls[expanded_url],'youtu.be') !== false){
-                        $y_url = $urls[expanded_url];
+                    if(strpos($urls['expanded_url'],'youtu.be') !== false){
+                        $y_url = $urls['expanded_url'];
                         $y_path = parse_url($y_url,PHP_URL_PATH);
                         $y_thumb = "http://i.ytimg.com/vi$y_path/mqdefault.jpg";
                         $y_url = "http://www.youtube.com/embed$y_path";
                     }
                     //ニコニコ動画リンク取得・サムネイル取得
-                    if(strpos($urls[expanded_url],'nico.ms') !== false){
-                        $n_url = $urls[expanded_url];
+                    if(strpos($urls['expanded_url'],'nico.ms') !== false){
+                        $n_url = $urls['expanded_url'];
                         $n_path = parse_url($n_url,PHP_URL_PATH);
                         $n_del = array('/sm','/so','/nm');
                         $n_id = str_replace($n_del,'',$n_path);
