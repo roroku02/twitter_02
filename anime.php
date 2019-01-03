@@ -25,6 +25,7 @@
                 <option value="2016" <?php if($_GET['year'] == 2016) echo "selected"; ?>>2016</option>
                 <option value="2017" <?php if($_GET['year'] == 2017) echo "selected"; ?>>2017</option>
                 <option value="2018" <?php if($_GET['year'] == 2018) echo "selected"; ?>>2018</option>
+                <option value="2019" <?php if($_GET['year'] == 2019) echo "selected"; ?>>2019</option>
             </select>
             <select name="season">
                 <option value="1" <?php if($_GET['season'] == 1) echo "selected"; ?>>冬</option>
