@@ -284,9 +284,20 @@
     }
 
     .js-slider {
-        padding-right: 5px;
+        padding: 5px;
         box-shadow: 0 0 50px gray;
         border-radius: 8px;
+        height: 90vh;
+    }
+
+    .slider-item {
+        max-height: 80vh;
+        overflow: scroll;
+        -ms-overflow-style: none;
+    }
+
+    .slider-item::-webkit-scrollbar {
+        display: none;
     }
 
     .slick-slide > div {
