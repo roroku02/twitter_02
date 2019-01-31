@@ -50,11 +50,14 @@
 .main .container {
     flex: 1 1 250px;
     border: 1px solid black;
+    transform: scale(1);
 }
 
 .main .container:not(:last-child):hover {
-    opacity: 0.5;
+    /* opacity: 0.5; **/
     transition: .2s;
+    transform: scale(1.2);
+    z-index: 2;
 }
 
 .container a {
