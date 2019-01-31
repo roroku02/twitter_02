@@ -94,13 +94,12 @@
     font-size: 48px;
     color: rgb(56, 56, 56);
     text-decoration: none;
+    padding: 8px;
 }
 
 .container #self_search_word {
     border-radius: 21px;
     font-size: 40px;
-    padding: 8px;
-    margin: 8px;
     width: 350px;
 }
 
@@ -352,6 +351,7 @@
 
     .search #Tweet_main {
         font-size: 1.45em;
+        word-wrap: break-word;
     }
 
     #arrows {
