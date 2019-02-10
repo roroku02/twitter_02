@@ -2,6 +2,8 @@
     header('Content-Type: text/html; charset=UTF-8');
     session_start();
     require_once('TwitterAppOAuth.php');
+    //エラー無効
+    error_reporting(0);
 
     $ConsumerKey = "7NOMZlf2flq1aefQbG1GJy3Zu";
     $ConsumerSecret = "XHKNEFh2TARhY2hIU2ilnaDAIvKd90fq8J2Lap7DLw5lMuVl6m";
@@ -92,7 +94,7 @@
             $sort[$key] = $value[retweet_count];
         }
         array_multisort($sort,SORT_DESC,$search_tweet);
-    }elseif($Fav_sort == TURE){
+    }elseif($Fav_sort == TRUE){
         if(isset($search_tweet0)){
             foreach($search_tweet as $key => $value){
                 $sort[$key] = $value[favorite_count];
