@@ -211,8 +211,8 @@
     <title>ツイート検索:<?php echo $search_word ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link href="http://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
-    <link href="http://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/earlyaccess/sawarabigothic.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/colorbox.css">
     <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
@@ -353,8 +353,8 @@
                     if(strpos($urls[expanded_url],'youtu.be') !== false){
                         $y_url = $urls[expanded_url];
                         $y_path = parse_url($y_url,PHP_URL_PATH);
-                        $y_thumb = "http://i.ytimg.com/vi$y_path/mqdefault.jpg";
-                        $y_url = "http://www.youtube.com/embed$y_path";
+                        $y_thumb = "https://i.ytimg.com/vi$y_path/mqdefault.jpg";
+                        $y_url = "https://www.youtube.com/embed$y_path";
                     }
                     //ニコニコ動画リンク取得・サムネイル取得
                     if(strpos($urls[expanded_url],'nico.ms') !== false){
@@ -362,10 +362,10 @@
                         $n_path = parse_url($n_url,PHP_URL_PATH);
                         $n_del = array('/sm','/so','/nm');
                         $n_id = str_replace($n_del,'',$n_path);
-                        if(@file_get_contents("http://tn.smilevideo.jp/smile?i=$n_id.M",NULL,NULL,0,1) !== false){
-                            $n_thumb = "http://tn.smilevideo.jp/smile?i=$n_id.M";
+                        if(@file_get_contents("https://tn.smilevideo.jp/smile?i=$n_id.M",NULL,NULL,0,1) !== false){
+                            $n_thumb = "https://tn.smilevideo.jp/smile?i=$n_id.M";
                         }else{
-                            $n_thumb = "http://tn.smilevideo.jp/smile?i=$n_id";
+                            $n_thumb = "https://tn.smilevideo.jp/smile?i=$n_id";
                         }
                         $n_url = "https://embed.nicovideo.jp/watch$n_path";
                     }
