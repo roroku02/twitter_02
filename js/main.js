@@ -28,6 +28,7 @@ $('input[name="rosen"]:radio').change(function () {
 });
 
 var windowWidth = $(window).width();
+//スマホ向けUI
 if (windowWidth <= 768) {
     $('.js-slider').slick({
         infinite: false,
@@ -42,6 +43,18 @@ if (windowWidth <= 768) {
     setTimeout(function () {
         $('#arrows').fadeOut("slow");
     }, 5000);
+}
+
+//PC向けUI
+if (windowWidth >= 769) {
+    $('.slider-item').waypoint(function (direction) {
+        var activePoint = $(this.element);
+        if (direction === 'down') {
+            activePoint.addClass('active');
+        } else {
+            activePoint.removeClass('active');
+        }
+    }, { offset: '70%' });
 }
 
 function check() {

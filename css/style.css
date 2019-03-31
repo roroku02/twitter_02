@@ -373,6 +373,19 @@
     }
 }
 
+@media(min-width: 769px){
+    .slider-item {
+        opacity: 0;
+        transition: .5s;
+        transform: translateX(500px);
+    }
+
+    .slider-item.active {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .search .retweet_sentence{
     color: green;
     margin-top: 0;
