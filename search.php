@@ -238,7 +238,7 @@
    });
 </script>
 
-<body>
+<body onload="end_loading()">
     <div class="bread">
         <ul>
             <li>
@@ -290,7 +290,13 @@
 <div class="load">
 </div>
 </div>
-   <div class="js-slider">
+    <div class="js-slider">
+    <div class="content_load">
+        <div class="wrap">
+            <img src="images/loading.gif" alt="">
+            <p>コンテンツの読み込みに時間が掛かっています...</p>
+        </div>
+    </div>
     <?php
     $count = sizeof($search_tweet);
     for($Tweet_num = 0; $Tweet_num < 100; $Tweet_num++){

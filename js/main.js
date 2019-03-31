@@ -54,7 +54,11 @@ if (windowWidth >= 769) {
         } else {
             activePoint.removeClass('active');
         }
-    }, { offset: '70%' });
+    }, { offset: '90%' });
+}
+
+function end_loading() {
+    $('.content_load').css("display", "none");
 }
 
 function check() {
