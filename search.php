@@ -361,15 +361,16 @@
                     //ニコニコ動画リンク取得・サムネイル取得
                     if(strpos($urls[expanded_url],'nico.ms') !== false){
                         $n_url = $urls[expanded_url];
-                        $n_path = parse_url($n_url,PHP_URL_PATH);
-                        $n_del = array('/sm','/so','/nm');
-                        $n_id = str_replace($n_del,'',$n_path);
-                        if(@file_get_contents("https://tn.smilevideo.jp/smile?i=$n_id.M",NULL,NULL,0,1) !== false){
-                            $n_thumb = "https://tn.smilevideo.jp/smile?i=$n_id.M";
-                        }else{
-                            $n_thumb = "https://tn.smilevideo.jp/smile?i=$n_id";
-                        }
-                        $n_url = "https://embed.nicovideo.jp/watch$n_path";
+                        //$n_path = parse_url($n_url,PHP_URL_PATH);
+                        $n_id = parse_url($n_url,PHP_URL_PATH);
+                        $n_info = simplexml_load_file("https://ext.nicovideo.jp/api/getthumbinfo/$n_id");
+                        $n_thumb_url = $n_info -> thumb -> thumbnail_url;
+                        $n_thumb = str_replace('http','https',$n_thumb_url);
+                        //$n_del = array('/sm','/so','/nm');
+                        //$n_id = str_replace($n_del,'',$n_path);
+                        if(@file_get_contents($n_thumb .".M",NULL,NULL,0,1) !== false)
+                            $n_thumb = $n_thumb .".M";
+                        $n_url = "https://embed.nicovideo.jp/watch$n_id";
                     }
                 }
             }   
