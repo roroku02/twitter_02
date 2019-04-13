@@ -91,6 +91,10 @@
     transform: scale(1);
 }
 
+.main .container img {
+    max-height: 180px;
+}
+
 .main .container:not(:last-child):hover {
     /* opacity: 0.5; **/
     transition: .2s;
@@ -125,9 +129,41 @@
 }
 
 .container .photo {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin: 10px auto;
     height: 200px;
+}
+
+@media (max-width: 768px) {
+    .main .container {
+        height: 140px;
+    }
+
+    .container a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 140px;
+    }
+
+    .container .photo {
+        height: 75px;
+        flex: 1;
+    }
+
+    .container .text {
+        flex: 1;
+    }
+
+    .container .photo img {
+        max-width: 100px;
+    }
+
+    .main .container:not(:last-child):hover {
+        transform: scale(1);
+        z-index: 2;
+    }
 }
 
 .self_search {
