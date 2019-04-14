@@ -58,7 +58,9 @@ if (windowWidth >= 769) {
 }
 
 function end_loading() {
-    $('.content_load').css("display", "none");
+    //$('.content_load').css("display", "none");
+    $('.content_load').remove();
+
 }
 
 function check() {
