@@ -281,9 +281,9 @@
     }
 
     .arrow_box button {
-        font-size: 1.3em;
+        font-size: 1.2em;
         padding: 10px 25px;
-        border: 1px;
+        border: solid 0.5px #55acee;
     }
 }
 
@@ -427,7 +427,7 @@
     }
 
     .search #Tweet_main {
-        font-size: 1.45em;
+        font-size: 1.25em;
         word-wrap: break-word;
     }
 
