@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>アニメタグ検索</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"  href="css/style.css" />
@@ -51,7 +52,7 @@
     curl_close($ch); 
     ?>
     </div>
-   
+
     <?php if(isset($response)){ ?>
         <div class="option_button">
             <form action="search.php" method="get" id="search_button">
@@ -67,5 +68,11 @@
             </form>
     <?php } ?>
     </div>
+    <nav class="page_top">
+        <a href="#" alt="pageTOP"><i class="fas fa-angle-double-up"></i></a>    
+    </nav>
+
+    <script src="js/main.js"></script>
+
 </body>
 </html>

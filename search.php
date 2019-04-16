@@ -475,7 +475,7 @@
 
     </section>
     <nav class="page_top">
-        <a href="#" alt="pageTOP">PageTop</a>    
+        <a href="#" alt="pageTOP"><i class="fas fa-angle-double-up"></i></a>    
     </nav>
     <div id="fade">
     <script src="js/main.js"></script>

@@ -92,3 +92,7 @@ function load() {
 $('.page_top > a').on('click', function () {
     $("html,body").animate({ scrollTop: 0 }, "700");
 });
+
+setTimeout(function () {
+    $('.page_top').animate({ opacity: '0.7' }, { duration: 2000, easing: 'swing' })
+}, 2000);

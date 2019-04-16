@@ -644,4 +644,19 @@
     border: 1px solid #55acee;
     color: white;
     background-color: #55acee;
+    font-size: 1.2em;
+    border-radius: 50%;
+    height: 3em;
+    width: 3em;
+}
+
+.page_top:hover {
+    opacity: 1;
+}
+
+.page_top a {
+    font-size: 2em;
+    color: white;
+    display: block;
+    text-align: center;
 }
