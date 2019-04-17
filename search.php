@@ -474,9 +474,9 @@
     <div id="arrows"><img src="images/swipe.png">スワイプして次のツイートを表示します</div>
 
     </section>
-    <nav class="page_top">
-        <a href="#" alt="pageTOP"><i class="fas fa-angle-double-up"></i></a>    
-    </nav>
+    <a href="#" alt="pageTOP" class="page_top">
+        <i class="fas fa-angle-double-up"></i>
+    </a>
     <div id="fade">
     <script src="js/main.js"></script>
 </body>
