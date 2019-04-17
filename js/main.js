@@ -42,7 +42,7 @@ if (windowWidth <= 768) {
 
     setTimeout(function () {
         $('#arrows').fadeOut("slow");
-    }, 5000);
+    }, 20000);
 }
 
 //PC向けUI
@@ -96,3 +96,7 @@ $('.page_top').on('click', function () {
 setTimeout(function () {
     $('.page_top').animate({ opacity: '0.7' }, { duration: 2000, easing: 'swing' })
 }, 2000);
+
+setTimeout(function () {
+    $('.nav_scroll').animate({ opacity: 0 }, { duration: 7000, easing: 'swing' })
+}, 5000);

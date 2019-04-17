@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css"  href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/colorbox.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/lightbox.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox-ja.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/lightbox.css" />
+    <script type="text/javascript" src="js/lightbox.js"></script>
+    <script type="text/javascript" src="js/jquery.waypoints.min.js"></script>
+    <script src="js/slick.js"></script>
+    <link rel="stylesheet" href="css/slick.css">
+
 </head>
 <body>
     <div class="bread">
@@ -68,9 +79,9 @@
             </form>
     <?php } ?>
     </div>
-    <nav class="page_top">
-        <a href="#" alt="pageTOP"><i class="fas fa-angle-double-up"></i></a>    
-    </nav>
+    <a href="#" alt="pageTOP" class="page_top">
+        <i class="fas fa-angle-double-up"></i>
+    </a>
 
     <script src="js/main.js"></script>
 

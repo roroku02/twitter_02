@@ -447,7 +447,7 @@
         align-items: center;
         justify-content: center;
         position: fixed;
-        bottom: 15%;
+        bottom: 20%;
         left: 0;
         right: 0;
         margin: auto;
@@ -659,4 +659,34 @@
     color: white;
     display: block;
     text-align: center;
+}
+
+.nav_scroll {
+    position: fixed;
+    bottom: -40px;
+    left: 50%;
+    display: inline-block;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+.nav_scroll i {
+    font-size: 4.5em;
+    text-align: center;
+    animation: updown 400ms ease-in 1s infinite alternate none;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(50%);
+    }
+}
+
+@media (max-width: 768px){
+    .nav_scroll i{
+        font-size: 4em;
+    }
 }
