@@ -173,7 +173,7 @@
 
     .container #search_form #search_button {
         font-size: 1.4em;
-        widows: auto;
+        width: auto;
     }
 }
 
@@ -195,7 +195,7 @@
     border-radius: 40px;
     font-size: 40px;
     margin: 8px;
-    padding: 10px auto;
+    padding: 0 10px;
     border: 3px solid #62f76a;
     background-color: #62f76a;
     font-family: 'Anton', sans-serif;
